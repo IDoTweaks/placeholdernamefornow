@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://ux8fnu4ys6vj"]
+
+[ext_resource type="Script" uid="uid://dwpytu8yco3we" path="res://Scripts/player_gui.gd" id="1_nm2lf"]
+
+[node name="playerGui" type="CanvasLayer" unique_id=1876833448]
+script = ExtResource("1_nm2lf")
+
+[node name="xp" type="Node" parent="." unique_id=546398512]
+
+[node name="randomAhhLabel" type="Label" parent="xp" unique_id=987770564]
+offset_right = 25.0
+offset_bottom = 23.0
+text = "XP:"
+
+[node name="showXp" type="Label" parent="xp" unique_id=568861117]
+offset_left = 23.0
+offset_right = 42.0
+offset_bottom = 23.0
+text = "0"
+autowrap_trim_flags = 0
+
+[node name="lvl" type="Node" parent="." unique_id=588867052]
+
+[node name="randomAhhLabel" type="Label" parent="lvl" unique_id=85657028]
+offset_top = 23.0
+offset_right = 25.0
+offset_bottom = 46.0
+text = "Level:"
+
+[node name="showLvl" type="Label" parent="lvl" unique_id=1695433150]
+offset_left = 44.0
+offset_top = 23.0
+offset_right = 63.0
+offset_bottom = 46.0
+text = "0"
+autowrap_trim_flags = 0

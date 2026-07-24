@@ -43,6 +43,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		_extend_tongue(get_global_mouse_position())
 
 func _start_aim() -> void:
+	_gainXp(1)
 	is_aiming = true
 	is_grappled = false
 	linear_velocity = Vector2.ZERO
@@ -135,3 +136,28 @@ func _point_and_tangent_at_distance(points: PackedVector2Array, distance: float)
 			return [pos, tangent]
 		remaining -= seg_len
 	return [points[points.size() - 1], Vector2.ZERO]
+
+#i will work under here:D -- love
+
+@export var xpPerKill : int = 1
+var xp : int= 0
+var level: int = 0
+@export var xp2next : int = 10
+@export var perLevelMult : float = 1.2
+@export var playerGui : CanvasLayer
+
+
+func _gainXp(ammount : int):
+	xp += ammount
+	_xpTick()
+
+
+func _xpTick():
+	if xp > xp2next:
+		xp -= xp2next
+		xp2next *= perLevelMult
+		level+=1
+		_xpTick()
+		playerGui._updateLvl(level)
+	playerGui._updateXp(xp)
+	

@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cgmynr8i7envo" path="res://Scripts/frog.gd" id="1_1m237"]
 [ext_resource type="Texture2D" uid="uid://cakt3j7a6sism" path="res://Assets/forg.jpg" id="2_bq1xi"]
+[ext_resource type="PackedScene" uid="uid://ux8fnu4ys6vj" path="res://Objects/playerGui.tscn" id="3_erh77"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_bq1xi"]
 friction = 0.5
@@ -9,9 +10,11 @@ bounce = 0.3
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bq1xi"]
 
-[node name="Froggy" type="RigidBody2D" unique_id=79017155]
+[node name="Froggy" type="RigidBody2D" unique_id=79017155 node_paths=PackedStringArray("playerGui")]
 physics_material_override = SubResource("PhysicsMaterial_bq1xi")
 script = ExtResource("1_1m237")
+launch_strength = 800.0
+playerGui = NodePath("playerGui")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=336494959]
 shape = SubResource("CircleShape2D_bq1xi")
@@ -26,3 +29,5 @@ zoom = Vector2(1.1, 1.1)
 position_smoothing_enabled = true
 
 [node name="Tongue" type="Line2D" parent="." unique_id=990262030]
+
+[node name="playerGui" parent="." unique_id=1876833448 instance=ExtResource("3_erh77")]
