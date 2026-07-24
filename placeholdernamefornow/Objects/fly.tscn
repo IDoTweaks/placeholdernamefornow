@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://h6071114lwx3"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_gwgwb"]
+
+[node name="Fly" type="Node2D" unique_id=1987323749]
+
+[node name="flyBody" type="MeshInstance2D" parent="." unique_id=133690366]
+position = Vector2(43.25, 36.25)
+scale = Vector2(87.5, 73.5)
+mesh = SubResource("BoxMesh_gwgwb")
