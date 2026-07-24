@@ -1017,3 +1017,17 @@ speed = 500.0
 
 [node name="Fly338" parent="." unique_id=2014191888 instance=ExtResource("1_hfvi5")]
 speed = 500.0
+[ext_resource type="PackedScene" uid="uid://im3rwyg2h68g" path="res://Objects/froggy.tscn" id="1_hfvi5"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_1y4jm"]
+distance = -64.0
+
+[node name="Node2D" type="Node2D" unique_id=787977219]
+
+[node name="Froggy" parent="." unique_id=79017155 instance=ExtResource("1_hfvi5")]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=495455548]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1000974307]
+position = Vector2(1, -39)
+shape = SubResource("WorldBoundaryShape2D_1y4jm")

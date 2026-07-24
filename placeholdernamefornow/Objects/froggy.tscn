@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://im3rwyg2h68g"]
+
+[ext_resource type="Script" uid="uid://cgmynr8i7envo" path="res://Scripts/frog.gd" id="1_1m237"]
+[ext_resource type="Texture2D" uid="uid://cakt3j7a6sism" path="res://Assets/forg.jpg" id="2_bq1xi"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_bq1xi"]
+friction = 0.5
+bounce = 0.3
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bq1xi"]
+
+[node name="Froggy" type="RigidBody2D" unique_id=79017155]
+physics_material_override = SubResource("PhysicsMaterial_bq1xi")
+script = ExtResource("1_1m237")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=336494959]
+shape = SubResource("CircleShape2D_bq1xi")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1695735601]
+scale = Vector2(0.035, 0.055)
+texture = ExtResource("2_bq1xi")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=137550157]
+scale = Vector2(0.035, 0.055)
+zoom = Vector2(1.1, 1.1)
+position_smoothing_enabled = true
+
+[node name="Tongue" type="Line2D" parent="." unique_id=990262030]
