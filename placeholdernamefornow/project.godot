@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="placeholdernamefornow"
-run/main_scene="uid://h6071114lwx3"
+run/main_scene="uid://d3klvk8ne77wh"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
 

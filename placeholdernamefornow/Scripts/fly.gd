@@ -4,10 +4,12 @@ extends Node2D
 @onready var pos = self.global_position
 @export var player : RigidBody2D
 @export var dmg : float
-
+@export var speed : float
+var usedTargPos = targetPos
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	usedTargPos = targetPos
+	_updateUsedPos()
 
 func _buzz(x,y,error : float) -> Vector2:
 	var randX = randf_range(0,error)
@@ -79,24 +81,33 @@ func _process(delta: float) -> void:
 	pass
 
 
-
-func _physics_process(delta: float) -> void:
-	var usedTargPos = targetPos
-	if abs(targetPos.x - global_position.x) > 5 and abs(targetPos.y - global_position.y) > 5 :
+func _updateUsedPos():
+	if abs(targetPos.x - global_position.x) > 50 and abs(targetPos.y - global_position.y) > 50 :
 		var rand = randf_range(0,4)
-		if rand > 3:
+		if rand > 2:
 			usedTargPos.x += 25
-		elif rand > 2:
+		elif rand > 0:
 			usedTargPos.x -= 25
-		elif rand > 1:
+		rand = randf_range(0,4)
+		if rand > 2:
 			usedTargPos.y += 25
 		elif rand > 0:
 			usedTargPos.y -= 25
-		
-	var go2 = _calcNextPos(pos.x,pos.y,usedTargPos.x,usedTargPos.y,1000,delta)
-	global_position.x = go2.x
-	global_position.y = go2.y
-	var buzz = _buzz(global_position.x,global_position.y,1)
+
+func _physics_process(delta: float) -> void:
+	var go2 
+	var buzz
+	if abs(targetPos.x - global_position.x) > 50 and abs(targetPos.y - global_position.y) > 50:
+		go2 = _calcNextPos(pos.x,pos.y,usedTargPos.x,usedTargPos.y,speed,delta)
+		global_position.x = go2.x
+		global_position.y = go2.y
+		buzz = _buzz(global_position.x,global_position.y,1)
+	else:
+		go2 = _calcNextPos(pos.x,pos.y,targetPos.x,targetPos.y,speed,delta)
+		global_position.x = go2.x
+		global_position.y = go2.y
+		buzz = _buzz(global_position.x,global_position.y,1)
+	
 	global_position.x = buzz.x
 	global_position.y = buzz.y
 	
