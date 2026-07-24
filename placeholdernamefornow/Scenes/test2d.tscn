@@ -1,3 +1,7 @@
 [gd_scene format=3 uid="uid://d3klvk8ne77wh"]
 
+[ext_resource type="PackedScene" uid="uid://h6071114lwx3" path="res://Objects/fly.tscn" id="1_hfvi5"]
+
 [node name="Node2D" type="Node2D" unique_id=787977219]
+
+[node name="Fly" parent="." unique_id=1987323749 instance=ExtResource("1_hfvi5")]
