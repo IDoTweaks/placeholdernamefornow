@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://h6071114lwx3"]
 
 [ext_resource type="Script" uid="uid://dohfmab8ocwqk" path="res://Scripts/fly.gd" id="1_s0fce"]
-[ext_resource type="PackedScene" uid="uid://im3rwyg2h68g" path="res://Objects/froggy.tscn" id="2_gtofk"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_gwgwb"]
 
@@ -21,8 +20,5 @@ mesh = SubResource("BoxMesh_gwgwb")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1700943226]
 position = Vector2(20, 20)
 shape = SubResource("RectangleShape2D_gwgwb")
-
-[node name="Froggy" parent="." unique_id=79017155 instance=ExtResource("2_gtofk")]
-position = Vector2(554, 310)
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

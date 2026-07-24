@@ -97,7 +97,7 @@ func _updateUsedPos():
 func _physics_process(delta: float) -> void:
 	var go2 
 	var buzz
-	if abs(targetPos.x - global_position.x) > 50 and abs(targetPos.y - global_position.y) > 50:
+	if abs(targetPos.x - global_position.x) > 50 or abs(targetPos.y - global_position.y) > 50:
 		go2 = _calcNextPos(pos.x,pos.y,usedTargPos.x,usedTargPos.y,speed,delta)
 		global_position.x = go2.x
 		global_position.y = go2.y
