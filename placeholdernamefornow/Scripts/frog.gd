@@ -38,7 +38,7 @@ var launch_path: PackedVector2Array = []
 var launch_progress := 0.0
 var launch_total_length := 0.0
 var launch_travel_speed := 0.0
-var aim_mouse_anchor: Vector2 = Vector2.ZERO
+var aim_screen_offset: Vector2 = Vector2.ZERO
 
 @export var growthPerLvl = .2
 var launchStrengthMult :=1
@@ -55,6 +55,7 @@ var cam_tween: Tween
 var rotation_tween: Tween
 
 func _ready() -> void:
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	aim_line.top_level = true
 	aim_line.clear_points()
 	continuous_cd = CCD_MODE_CAST_SHAPE
@@ -102,24 +103,24 @@ func _unhandled_input(event: InputEvent) -> void:
 		return
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if event.pressed:
-			_start_aim(event.position)
+			_start_aim()
 		else:
 			_release_tongue()
 	elif event is InputEventMouseMotion and is_aiming:
-		_extend_tongue(_aim_relative_target(event.position))
+		aim_screen_offset += event.relative
+		_extend_tongue(_aim_relative_target(aim_screen_offset))
 
-func _aim_relative_target(screen_pos: Vector2) -> Vector2:
-	var screen_delta := screen_pos - aim_mouse_anchor
-	var world_delta := get_viewport().canvas_transform.affine_inverse().basis_xform(screen_delta)
+func _aim_relative_target(screen_offset: Vector2) -> Vector2:
+	var world_delta := get_viewport().canvas_transform.affine_inverse().basis_xform(screen_offset)
 	return global_position + world_delta
 
-func _start_aim(screen_pos: Vector2) -> void:
+func _start_aim() -> void:
 	is_aiming = true
 	is_grappled = false
-	aim_mouse_anchor = screen_pos
+	aim_screen_offset = Vector2.ZERO
 	tongue_points = PackedVector2Array([global_position])
 	aim_line.points = tongue_points
-	_extend_tongue(_aim_relative_target(screen_pos))
+	_extend_tongue(_aim_relative_target(aim_screen_offset))
 
 func _update_tongue_base() -> void:
 	var base: Vector2 = tongue_points[0]
@@ -131,7 +132,7 @@ func _update_tongue_base() -> void:
 
 func _extend_tongue(target: Vector2) -> void:
 	var tempParticles = drawPointerParticles.instantiate()
-	tempParticles.global_position = get_global_mouse_position()
+	tempParticles.global_position = target
 	get_tree().current_scene.add_child(tempParticles)
 	tempParticles.emitting = true
 	if is_grappled or tongue_points.is_empty():
