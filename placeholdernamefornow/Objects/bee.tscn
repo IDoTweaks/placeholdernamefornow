@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://xja0xk872fk2"]
+
+[ext_resource type="Script" uid="uid://htppsm3ldnd5" path="res://Scripts/bee.gd" id="1_1w1t6"]
+[ext_resource type="Script" uid="uid://dtt0sydpo0mg3" path="res://Scripts/ray_cast_manager.gd" id="2_tnn6e"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_1w1t6"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1w1t6"]
+albedo_color = Color(1, 1, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_gwgwb"]
+material = SubResource("StandardMaterial3D_1w1t6")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gwgwb"]
+
+[node name="Bee" type="Node2D" unique_id=1987323749 groups=["fly"]]
+script = ExtResource("1_1w1t6")
+
+[node name="beeBody" type="MeshInstance2D" parent="." unique_id=133690366]
+modulate = Color(1, 1, 0, 1)
+material = SubResource("CanvasItemMaterial_1w1t6")
+position = Vector2(20, 20)
+scale = Vector2(15, 15)
+mesh = SubResource("BoxMesh_gwgwb")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=597820692]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1700943226]
+position = Vector2(20, 20)
+scale = Vector2(0.75, 0.75)
+shape = SubResource("RectangleShape2D_gwgwb")
+
+[node name="rayCastManager" type="Node2D" parent="." unique_id=1182362815]
+position = Vector2(20, 20)
+script = ExtResource("2_tnn6e")
+
+[node name="down" type="RayCast2D" parent="rayCastManager" unique_id=1159018322]
+target_position = Vector2(0, 9)
+
+[node name="up" type="RayCast2D" parent="rayCastManager" unique_id=2132009023]
+target_position = Vector2(0, -9)
+
+[node name="left" type="RayCast2D" parent="rayCastManager" unique_id=827942100]
+target_position = Vector2(-9, 0)
+
+[node name="right" type="RayCast2D" parent="rayCastManager" unique_id=1057084005]
+target_position = Vector2(9, 0)
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

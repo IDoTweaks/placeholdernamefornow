@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://c45arut0eqsmf" path="res://Art/dirt.png" id="4_7lihs"]
 [ext_resource type="Texture2D" uid="uid://dafy3xd6wpclt" path="res://Art/brick.png" id="4_kldst"]
 [ext_resource type="Texture2D" uid="uid://cethgvbiv0pnx" path="res://Art/grass.png" id="5_fgofq"]
+[ext_resource type="PackedScene" uid="uid://xja0xk872fk2" path="res://Objects/bee.tscn" id="7_fgofq"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_b2bpf"]
 texture = ExtResource("4_kldst")
@@ -57,3 +58,9 @@ player = NodePath("../Froggy")
 [node name="Fly2" parent="." unique_id=1936282248 node_paths=PackedStringArray("player") instance=ExtResource("2_j5yw3")]
 position = Vector2(159, 155)
 player = NodePath("../Froggy")
+
+[node name="Bee" parent="." unique_id=1564560295 node_paths=PackedStringArray("player") instance=ExtResource("7_fgofq")]
+position = Vector2(186, -133)
+player = NodePath("../Froggy")
+buzzStrength = 80.0
+wanderRadius = 35.0
