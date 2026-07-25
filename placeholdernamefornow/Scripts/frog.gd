@@ -160,7 +160,8 @@ func _extend_tongue(target: Vector2) -> void:
 		_try_eat(result.collider)
 
 	tempParticles = drawParticles.instantiate()
-	tempParticles.global_position = get_global_mouse_position()
+	tempParticles.global_position.x = tongue_points[tongue_points.size() - 1].x
+	tempParticles.global_position.y = tongue_points[tongue_points.size() - 1].y
 	get_tree().current_scene.add_child(tempParticles)
 	tempParticles.emitting = true
 	tongue_points.append(target)
