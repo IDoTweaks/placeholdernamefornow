@@ -23,6 +23,8 @@ var grounded = false
 @onready var frogFeet = $froggyYUMMYfeet
 @onready var groundedRay : RayCast2D = $groundedRay
 @onready var landingParticles = preload("res://particles/landParticles.tscn")
+@onready var drawParticles = preload("res://particles/drawParticles.tscn")
+@onready var drawPointerParticles = preload("res://particles/drawPointerParticles.tscn")
 
 var is_aiming := false
 var is_grappled := false
@@ -128,6 +130,10 @@ func _update_tongue_base() -> void:
 	aim_line.points = tongue_points
 
 func _extend_tongue(target: Vector2) -> void:
+	var tempParticles = drawPointerParticles.instantiate()
+	tempParticles.global_position = get_global_mouse_position()
+	get_tree().current_scene.add_child(tempParticles)
+	tempParticles.emitting = true
 	if is_grappled or tongue_points.is_empty():
 		return
 
@@ -135,12 +141,11 @@ func _extend_tongue(target: Vector2) -> void:
 	var remaining := max_tongue_length - _path_length(tongue_points)
 	if remaining <= 0.0:
 		return
-
 	var segment := target - last
 	var segment_len := segment.length()
 	if segment_len < min_point_distance:
 		return
-
+	
 	if segment_len > remaining:
 		target = last + segment.normalized() * remaining
 		segment_len = remaining
@@ -154,6 +159,10 @@ func _extend_tongue(target: Vector2) -> void:
 		is_grappled = true
 		_try_eat(result.collider)
 
+	tempParticles = drawParticles.instantiate()
+	tempParticles.global_position = get_global_mouse_position()
+	get_tree().current_scene.add_child(tempParticles)
+	tempParticles.emitting = true
 	tongue_points.append(target)
 	aim_line.points = tongue_points
 
