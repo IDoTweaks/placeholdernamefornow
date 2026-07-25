@@ -73,12 +73,54 @@ tile_set = SubResource("TileSet_7lihs")
 position = Vector2(231, 155)
 player = NodePath("../Froggy")
 
-[node name="Fly2" parent="." unique_id=1936282248 node_paths=PackedStringArray("player") instance=ExtResource("2_j5yw3")]
-position = Vector2(159, 155)
+[node name="Fly3" parent="." unique_id=195048358 node_paths=PackedStringArray("player") instance=ExtResource("2_j5yw3")]
+position = Vector2(231, 155)
+player = NodePath("../Froggy")
+
+[node name="Fly4" parent="." unique_id=1580535984 node_paths=PackedStringArray("player") instance=ExtResource("2_j5yw3")]
+position = Vector2(231, 155)
+player = NodePath("../Froggy")
+
+[node name="Fly5" parent="." unique_id=1421701062 node_paths=PackedStringArray("player") instance=ExtResource("2_j5yw3")]
+position = Vector2(231, 155)
+player = NodePath("../Froggy")
+
+[node name="Fly6" parent="." unique_id=557549574 node_paths=PackedStringArray("player") instance=ExtResource("2_j5yw3")]
+position = Vector2(231, 155)
 player = NodePath("../Froggy")
 
 [node name="Bee" parent="." unique_id=1564560295 node_paths=PackedStringArray("player") instance=ExtResource("7_fgofq")]
-position = Vector2(186, -133)
+position = Vector2(172, -144)
+player = NodePath("../Froggy")
+buzzStrength = 80.0
+wanderRadius = 35.0
+
+[node name="Bee3" parent="." unique_id=544626666 node_paths=PackedStringArray("player") instance=ExtResource("7_fgofq")]
+position = Vector2(118, -62)
+player = NodePath("../Froggy")
+buzzStrength = 80.0
+wanderRadius = 35.0
+
+[node name="Bee4" parent="." unique_id=1750250967 node_paths=PackedStringArray("player") instance=ExtResource("7_fgofq")]
+position = Vector2(196, -65)
+player = NodePath("../Froggy")
+buzzStrength = 80.0
+wanderRadius = 35.0
+
+[node name="Bee5" parent="." unique_id=877390262 node_paths=PackedStringArray("player") instance=ExtResource("7_fgofq")]
+position = Vector2(88, -114)
+player = NodePath("../Froggy")
+buzzStrength = 80.0
+wanderRadius = 35.0
+
+[node name="Bee6" parent="." unique_id=304431216 node_paths=PackedStringArray("player") instance=ExtResource("7_fgofq")]
+position = Vector2(239, -128)
+player = NodePath("../Froggy")
+buzzStrength = 80.0
+wanderRadius = 35.0
+
+[node name="Bee2" parent="." unique_id=511322223 node_paths=PackedStringArray("player") instance=ExtResource("7_fgofq")]
+position = Vector2(471, 131)
 player = NodePath("../Froggy")
 buzzStrength = 80.0
 wanderRadius = 35.0
