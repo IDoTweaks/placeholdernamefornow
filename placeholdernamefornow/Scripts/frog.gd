@@ -21,6 +21,7 @@ extends RigidBody2D
 @export var maxY : float
 @export var mouth_open_distance: float = 150.0
 
+var menuOpen = false
 var grounded = false
 @onready var frogFeet = $froggyYUMMYfeet
 @onready var groundedRay : RayCast2D = $groundedRay
@@ -430,27 +431,75 @@ func _catchFly(fly):
 	fly.queue_free()
 	_gainXp(1)
 
+@onready var notifCanv = $notificationCanvas/Window
+@onready var buffTxt = $notificationCanvas/Window/buffTxt
+
+func _displayBuffWindow(msg):
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	menuOpen = true
+	buffTxt.text = msg
+	notifCanv.visible = true
+	get_tree().paused = true
+
+func _closeBuffWindow():
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	menuOpen = false
+	notifCanv.visible = false
+	get_tree().paused = false
+
 func _onLevelUp():
 	global_scale.x += growthPerLvl
 	global_scale.y += growthPerLvl
 	print("lvl")
 	if level == upgrades[upgradeI][0]:
+		get_tree().paused = true
 		if upgrades[upgradeI][1] == "xpMult":
 			_xpMultBuff(upgrades[upgradeI][2])
+			var msg = "you recived a xp multiplier buff! \n
+			now you get more xp so you can get more xp multipliers\n
+			shit i think we are stuck in a paradoxT_T"
+			_displayBuffWindow(msg)
 		elif upgrades[upgradeI][1] == "xpAdd":
 			_xpAddBuff(upgrades[upgradeI][2])
+			var msg = "you recived a xp adder buff! \n
+			now you get more xp so you can get more xp adders\n
+			shit i think we are stuck in a paradoxT_T"
+			_displayBuffWindow(msg)
 		elif upgrades[upgradeI][1] == "launchStrengthAdd":
 			_launchStrengthAddBuff(upgrades[upgradeI][2])
-			print(str(launch_strength))
+			var msg = "you recived a launch strength adder buff! \n
+			now you can go faster!\n
+			actually maybe its a nerf because slow and steady wins the race!"
+			_displayBuffWindow(msg)
 		elif upgrades[upgradeI][1] == "launchStrengthMult":
+			var msg = "you recived a launch strength multiplier buff! \n
+			now you can go faster!\n
+			actually maybe its a nerf because slow and steady wins the race!"
+			_displayBuffWindow(msg)
 			_launchStrengthMultBuff(upgrades[upgradeI][2])
 		elif upgrades[upgradeI][1] == "maxToungeLengthAdd":
 			_maxToungeLengthAddBuff(upgrades[upgradeI][2])
+			var msg = "you recived a tongue length adder buff! \n
+			now you can lick further!\n
+			please dont exploit it to lick things you shouldn't:("
+			_displayBuffWindow(msg)
 		elif upgrades[upgradeI][1] == "maxToungeLengthMult":
 			_maxToungeLengthMultBuff(upgrades[upgradeI][2])
+			var msg = "you recived a tongue length multiplier buff! \n
+			now you can lick further!\n
+			please dont exploit it to lick things you shouldn't:("
+			_displayBuffWindow(msg)
 		elif upgrades[upgradeI][1] == "pathTravelSpeedAdd":
+			var msg = "you recived a path travel speed adder buff! \n
+			now you can go faster!\n
+			actually maybe its a nerf because slow and steady wins the race!"
+			_displayBuffWindow(msg)
 			_pathTravelSpeedAddBuff(upgrades[upgradeI][2])
 		elif upgrades[upgradeI][1] == "pathTravelSpeedMult":
+			var msg = "you recived a path travel speed multiplier buff! \n
+			now you can go faster!\n
+			actually maybe its a nerf because slow and steady wins the race!"
+			_displayBuffWindow(msg)
 			_pathTravelSpeedMultBuff(upgrades[upgradeI][2])
 		upgradeI+=1
 
@@ -463,3 +512,7 @@ func _xpTick():
 		_onLevelUp()
 		playerGui._updateLvl(level)
 	playerGui._updateXp(xp, xp2next)
+
+
+func _on_window_close_requested() -> void:
+	_closeBuffWindow()
