@@ -33,3 +33,9 @@ position_smoothing_enabled = true
 texture = ExtResource("3_yua7d")
 
 [node name="playerGui" parent="." unique_id=1876833448 instance=ExtResource("3_erh77")]
+
+[node name="groundedRay" type="RayCast2D" parent="." unique_id=1137184824]
+target_position = Vector2(0, 24)
+
+[node name="froggyYUMMYfeet" type="Node2D" parent="." unique_id=590660914]
+position = Vector2(0, 9)

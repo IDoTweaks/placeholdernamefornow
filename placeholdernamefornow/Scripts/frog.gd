@@ -8,6 +8,11 @@ extends RigidBody2D
 @export var path_travel_speed: float = 1000.0
 @export var grapple_collision_mask: int = 1
 
+var grounded = false
+@onready var frogFeet = $froggyYUMMYfeet
+@onready var groundedRay : RayCast2D = $groundedRay
+@onready var landingParticles = preload("res://particles/landParticles.tscn")
+
 var is_aiming := false
 var is_grappled := false
 var is_launching := false
@@ -33,6 +38,15 @@ func _physics_process(delta: float) -> void:
 
 	if is_launching:
 		_advance_launch(delta)
+	if groundedRay.get_collider() != null:
+		if not grounded:
+			grounded = true
+			var tempParticles = landingParticles.instantiate()
+			tempParticles.global_position = frogFeet.global_position
+			get_tree().current_scene.add_child(tempParticles)
+			tempParticles.emitting = true
+	else:
+			grounded = false
 
 func _unhandled_input(event: InputEvent) -> void:
 	if is_launching:
