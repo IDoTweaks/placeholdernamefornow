@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://h6071114lwx3"]
 
 [ext_resource type="Script" uid="uid://dohfmab8ocwqk" path="res://Scripts/fly.gd" id="1_s0fce"]
+[ext_resource type="Script" uid="uid://dtt0sydpo0mg3" path="res://Scripts/ray_cast_manager.gd" id="2_gtofk"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_gwgwb"]
 
@@ -20,5 +21,21 @@ mesh = SubResource("BoxMesh_gwgwb")
 position = Vector2(20, 20)
 scale = Vector2(0.25, 0.25)
 shape = SubResource("RectangleShape2D_gwgwb")
+
+[node name="rayCastManager" type="Node2D" parent="." unique_id=1182362815]
+position = Vector2(20, 20)
+script = ExtResource("2_gtofk")
+
+[node name="down" type="RayCast2D" parent="rayCastManager" unique_id=1159018322]
+target_position = Vector2(0, 9)
+
+[node name="up" type="RayCast2D" parent="rayCastManager" unique_id=2132009023]
+target_position = Vector2(0, -9)
+
+[node name="left" type="RayCast2D" parent="rayCastManager" unique_id=827942100]
+target_position = Vector2(-9, 0)
+
+[node name="right" type="RayCast2D" parent="rayCastManager" unique_id=1057084005]
+target_position = Vector2(9, 0)
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
