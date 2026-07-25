@@ -43,7 +43,7 @@ func _physics_process(delta: float) -> void:
 		wantVel = rayManager._check4collision(wantVel)
 		global_position += wantVel * delta
 
-		global_position += _buzz(buzzStrength) * delta
+	global_position += _buzz(buzzStrength) * delta
 
 
 func _buzz(strength : float) -> Vector2:

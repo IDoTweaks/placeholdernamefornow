@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://b3alsvctiehkw"]
+
+[ext_resource type="Script" uid="uid://cp7kts0l06qtm" path="res://Scripts/main_menu.gd" id="1_8saeu"]
+[ext_resource type="Texture2D" uid="uid://b5t2ceiosrahm" path="res://Art/Background.png" id="1_853f1"]
+[ext_resource type="Texture2D" uid="uid://b0oqpcomawlng" path="res://Art/WhatsApp Image 2026-07-25 at 17.30.28.jpeg" id="2_8saeu"]
+
+[node name="MainMenu" type="Control" unique_id=705486862]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8saeu")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=911019288]
+z_index = 4
+layout_mode = 0
+offset_left = 303.0
+offset_top = -2.0
+offset_right = 912.0
+offset_bottom = 179.0
+theme_override_colors/default_color = Color(1.1406988e-05, 0.89768624, 7.70092e-07, 1)
+theme_override_colors/font_outline_color = Color(0, 0.14509805, 0, 1)
+theme_override_constants/outline_size = 45
+theme_override_font_sizes/normal_font_size = 55
+text = "PLACEHOLDER NAME FOR NOW"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Background" type="Sprite2D" parent="." unique_id=804165882]
+position = Vector2(630, 335.00003)
+scale = Vector2(0.92578125, 4.805556)
+texture = ExtResource("1_853f1")
+
+[node name="WhatsAppImage20260725At17_30_28" type="Sprite2D" parent="." unique_id=317137575]
+position = Vector2(666, 317)
+scale = Vector2(1.3213334, 1)
+texture = ExtResource("2_8saeu")
+
+[node name="Button" type="Button" parent="." unique_id=763485931]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 342.0
+offset_right = 232.0
+offset_bottom = 452.0
+theme_override_colors/font_color = Color(0.63865566, 0.9747136, 0.6035946, 1)
+theme_override_colors/font_hover_color = Color(0, 0.9490196, 0, 1)
+theme_override_font_sizes/font_size = 74
+text = "START"
+
+[connection signal="button_down" from="Button" to="." method="_on_button_button_down"]
