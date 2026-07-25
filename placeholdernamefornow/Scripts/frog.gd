@@ -18,6 +18,7 @@ extends RigidBody2D
 @export var tumble_damp: float = 1.5
 @export var fall_speed_bonus: float = 0.6
 @export var kill_y: float = 700.0
+@export var maxY : float
 
 var grounded = false
 @onready var frogFeet = $froggyYUMMYfeet
@@ -69,6 +70,7 @@ func _ready() -> void:
 		playerGui._updateXp(xp, xp2next)
 
 func _physics_process(delta: float) -> void:
+	#if global_position.y > kill_y or global_position.y < maxY:
 	if global_position.y > kill_y:
 		_respawn()
 		return
@@ -340,13 +342,13 @@ var level: int = 0
 var upgradeI = 0
 var upgrades = [
 	[1,"launchStrengthAdd",50],
-	[5,"xpMult",1.2],
-	[10,"xpAdd",1],
-	[15,"launchStrengthMult",1.2],
-	[20,"maxToungeLengthAdd",200],
-	[25,"maxToungeLengthMult",1.2],
-	[30,"pathTravelSpeedAdd",200],
-	[35,"pathTravelSpeedMult",1.2],
+	[2,"xpMult",1.2],
+	[3,"xpAdd",1],
+	[4,"launchStrengthMult",1.2],
+	[5,"maxToungeLengthAdd",200],
+	[6,"maxToungeLengthMult",1.2],
+	[7,"pathTravelSpeedAdd",200],
+	[8,"pathTravelSpeedMult",1.2],
 	]
 
 func _gainXp(ammount : int):
