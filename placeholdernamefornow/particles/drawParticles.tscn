@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://ctx2b77qvbbys"]
+
+[ext_resource type="Script" uid="uid://cl68peypnfp4q" path="res://Scripts/land_particles.gd" id="1_iualn"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_d0ouv"]
+lifetime_randomness = 0.09
+particle_flag_disable_z = true
+direction = Vector3(0, -6.16, 0)
+spread = 180.0
+initial_velocity_min = 40.0
+initial_velocity_max = 50.0
+gravity = Vector3(0, 81.225, 0)
+scale_max = 3.53
+color = Color(0.94095004, 0.3520222, 0.71575797, 1)
+
+[node name="drawParticles" type="GPUParticles2D" unique_id=1181509879]
+emitting = false
+amount = 16
+lifetime = 0.41000000000000003
+one_shot = true
+explosiveness = 0.74
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_d0ouv")
+script = ExtResource("1_iualn")
+
+[connection signal="finished" from="." to="." method="_on_finished"]
