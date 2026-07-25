@@ -17,6 +17,8 @@ var launch_path: PackedVector2Array = []
 var launch_progress := 0.0
 var launch_total_length := 0.0
 
+var launchStrengthMult :=1
+
 @onready var aim_line: Line2D = $Tongue
 
 func _ready() -> void:
@@ -107,7 +109,7 @@ func _advance_launch(delta: float) -> void:
 		_finish_launch(sample[1])
 
 func _finish_launch(exit_direction: Vector2) -> void:
-	var speed: float = launch_total_length * launch_strength
+	var speed: float = launch_total_length * (launch_strength * launchStrengthMult)
 	var direction := exit_direction
 
 	if direction.length() > 0.0:
@@ -151,7 +153,11 @@ var upgrades = [
 	[1,"launchStrengthAdd",50],
 	[5,"xpMult",1.2],
 	[10,"xpAdd",1],
-	[15,"launchStrengthAdd",50]
+	[15,"launchStrengthMult",1.2],
+	[20,"maxToungeLengthAdd",200],
+	[25,"maxToungeLengthMult",1.2],
+	[30,"pathTravelSpeedAdd",200],
+	[35,"pathTravelSpeedMult",1.2],
 	]
 
 func _gainXp(ammount : int):
@@ -159,8 +165,24 @@ func _gainXp(ammount : int):
 	_xpTick()
 	
 
-func _launchStrengthBuff(ammount : float):
+func _pathTravelSpeedAddBuff(ammount : float):
+	path_travel_speed += ammount
+
+func _pathTravelSpeedMultBuff(ammount : float):
+	path_travel_speed *= ammount
+
+func _maxToungeLengthAddBuff(ammount : float):
+	max_tongue_length += ammount
+
+func _maxToungeLengthMultBuff(ammount : float):
+	max_tongue_length *= ammount
+
+func _launchStrengthAddBuff(ammount : float):
 	launch_strength += ammount
+
+func _launchStrengthMultBuff(ammount : float):
+	launch_strength *= ammount
+
 
 func _xpMultBuff(ammount : float):
 	xpMult += ammount
@@ -180,8 +202,18 @@ func _onLevelUp():
 		elif upgrades[upgradeI][1] == "xpAdd":
 			_xpAddBuff(upgrades[upgradeI][2])
 		elif upgrades[upgradeI][1] == "launchStrengthAdd":
-			_launchStrengthBuff(upgrades[upgradeI][2])
+			_launchStrengthAddBuff(upgrades[upgradeI][2])
 			print(str(launch_strength))
+		elif upgrades[upgradeI][1] == "launchStrengthMult":
+			_launchStrengthMultBuff(upgrades[upgradeI][2])
+		elif upgrades[upgradeI][1] == "maxToungeLengthAdd":
+			_maxToungeLengthAddBuff(upgrades[upgradeI][2])
+		elif upgrades[upgradeI][1] == "maxToungeLengthMult":
+			_maxToungeLengthMultBuff(upgrades[upgradeI][2])
+		elif upgrades[upgradeI][1] == "pathTravelSpeedAdd":
+			_pathTravelSpeedAddBuff(upgrades[upgradeI][2])
+		elif upgrades[upgradeI][1] == "pathTravelSpeedMult":
+			_pathTravelSpeedMultBuff(upgrades[upgradeI][2])
 		upgradeI+=1
 
 func _xpTick():
