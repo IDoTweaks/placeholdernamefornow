@@ -14,6 +14,13 @@
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_koqhg"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cmrfp"]
+[sub_resource type="InputEventKey" id="InputEventKey_ghw46"]
+device = -1
+keycode = 66
+unicode = 98
+
+[sub_resource type="Shortcut" id="Shortcut_df05h"]
+events = [SubResource("InputEventKey_ghw46")]
 
 [node name="MainMenu" type="Control" unique_id=705486862]
 layout_mode = 3
@@ -49,20 +56,15 @@ position = Vector2(666, 317)
 scale = Vector2(1.3213334, 1)
 texture = ExtResource("2_8saeu")
 
-[node name="Button" type="Button" parent="." unique_id=763485931]
+[node name="TextureButton" type="TextureButton" parent="." unique_id=576386641]
+texture_filter = 1
 layout_mode = 0
-offset_left = 3.0
-offset_top = 342.0
-offset_right = 250.0
-offset_bottom = 480.0
-theme_override_font_sizes/font_size = 16
-theme_override_icons/icon = ExtResource("4_ghw46")
-theme_override_styles/normal = SubResource("StyleBoxEmpty_df05h")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_8um5k")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_xim88")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_koqhg")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_cmrfp")
-icon = ExtResource("4_ghw46")
-expand_icon = true
+offset_left = -141.0
+offset_top = 344.0
+offset_right = 529.0
+offset_bottom = 478.0
+shortcut = SubResource("Shortcut_df05h")
+texture_normal = ExtResource("4_ghw46")
+stretch_mode = 0
 
-[connection signal="button_down" from="Button" to="." method="_on_button_button_down"]
+[connection signal="pressed" from="TextureButton" to="." method="_on_button_button_down"]

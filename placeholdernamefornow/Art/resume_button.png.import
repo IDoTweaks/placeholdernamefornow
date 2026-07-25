@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cf21c2y18qooj"
-path="res://.godot/imported/tongue.png-9a0bc461a708b07e018b1b550a634164.ctex"
+uid="uid://bcfyfgkq55www"
+path="res://.godot/imported/resume_button.png-5bcf694d3f821eb6d4071748d6966336.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/tongue.png"
-dest_files=["res://.godot/imported/tongue.png-9a0bc461a708b07e018b1b550a634164.ctex"]
+source_file="res://Art/resume_button.png"
+dest_files=["res://.godot/imported/resume_button.png-5bcf694d3f821eb6d4071748d6966336.ctex"]
 
 [params]
 

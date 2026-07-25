@@ -20,6 +20,7 @@ extends RigidBody2D
 @export var kill_y: float = 700.0
 @export var maxY : float
 @export var mouth_open_distance: float = 150.0
+@export var bounce_strength: float = 1400.0
 
 var menuOpen = false
 var grounded = false
@@ -98,8 +99,24 @@ func _physics_process(delta: float) -> void:
 			tempParticles.global_position = frogFeet.global_position
 			get_tree().current_scene.add_child(tempParticles)
 			tempParticles.emitting = true
+			_check_landing_tile(groundedRay.get_collider())
 	else:
 			grounded = false
+
+func _check_landing_tile(collider: Object) -> void:
+	if not (collider is TileMapLayer):
+		return
+	var hit_point := groundedRay.get_collision_point()
+	var coords: Vector2i = collider.local_to_map(collider.to_local(hit_point))
+	var tile_data: TileData = collider.get_cell_tile_data(coords)
+	if tile_data == null:
+		return
+	var tile_type: String = tile_data.get_custom_data("tile_type")
+	if tile_type == "spike":
+		_respawn()
+	elif tile_type == "bounce":
+		linear_velocity.y = -bounce_strength
+		grounded = false
 
 func _unhandled_input(event: InputEvent) -> void:
 	if is_launching:
@@ -203,7 +220,6 @@ func _extend_tongue(target: Vector2) -> void:
 	if result:
 		target = result.position
 		is_grappled = true
-		_try_eat(result.collider)
 
 	tempParticles = drawParticles.instantiate()
 	tempParticles.global_position.x = tongue_points[tongue_points.size() - 1].x
@@ -213,16 +229,6 @@ func _extend_tongue(target: Vector2) -> void:
 	tongue_points.append(target)
 	aim_line.points = tongue_points
 	aim_screen_offset = Vector2.ZERO
-
-func _try_eat(collider: Object) -> void:
-	if collider == null:
-		return
-	var fly_node: Node = null
-	if collider is Node and collider.is_in_group("fly"):
-		fly_node = collider
-	elif collider is Node and collider.get_parent() != null and collider.get_parent().is_in_group("fly"):
-		fly_node = collider.get_parent()
-	_eat_fly(fly_node)
 
 func _eat_fly(fly_node: Node) -> void:
 	if fly_node == null or not is_instance_valid(fly_node):
@@ -237,7 +243,8 @@ func _eat_fly(fly_node: Node) -> void:
 	sprite_tween.tween_property(sprite, "scale", sprite_base_scale, 0.15).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 
 func _eat_fly_contact(fly_node: Node) -> void:
-	_eat_fly(fly_node)
+	if is_grappled:
+		_eat_fly(fly_node)
 
 func _release_tongue() -> void:
 	if is_aiming and is_grappled and tongue_points.size() >= 2:

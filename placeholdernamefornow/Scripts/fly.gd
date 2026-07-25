@@ -68,3 +68,5 @@ func _dmgPlayer(ammount : float) -> void:
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body == player:
 		_dmgPlayer(dmg)
+		if player.has_method("_eat_fly_contact"):
+			player._eat_fly_contact(self)

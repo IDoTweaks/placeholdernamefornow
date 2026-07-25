@@ -2,36 +2,91 @@
 
 [ext_resource type="Script" uid="uid://htppsm3ldnd5" path="res://Scripts/bee.gd" id="1_1w1t6"]
 [ext_resource type="Script" uid="uid://dtt0sydpo0mg3" path="res://Scripts/ray_cast_manager.gd" id="2_tnn6e"]
-
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_1w1t6"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1w1t6"]
-albedo_color = Color(1, 1, 0, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_gwgwb"]
-material = SubResource("StandardMaterial3D_1w1t6")
+[ext_resource type="Texture2D" uid="uid://dg33pdtwl8ed3" path="res://Art/bee_anim.png" id="3_tnn6e"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gwgwb"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2we1h"]
+atlas = ExtResource("3_tnn6e")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k1ntm"]
+atlas = ExtResource("3_tnn6e")
+region = Rect2(8, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6p3yi"]
+atlas = ExtResource("3_tnn6e")
+region = Rect2(16, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vso4n"]
+atlas = ExtResource("3_tnn6e")
+region = Rect2(24, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6dtip"]
+atlas = ExtResource("3_tnn6e")
+region = Rect2(32, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lm45r"]
+atlas = ExtResource("3_tnn6e")
+region = Rect2(40, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fq6nm"]
+atlas = ExtResource("3_tnn6e")
+region = Rect2(48, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e77m3"]
+atlas = ExtResource("3_tnn6e")
+region = Rect2(56, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ol73m"]
+atlas = ExtResource("3_tnn6e")
+region = Rect2(64, 0, 8, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ud12p"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2we1h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k1ntm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6p3yi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vso4n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6dtip")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lm45r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fq6nm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e77m3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ol73m")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="Bee" type="Node2D" unique_id=1987323749 groups=["fly"]]
 script = ExtResource("1_1w1t6")
 
-[node name="beeBody" type="MeshInstance2D" parent="." unique_id=133690366]
-modulate = Color(1, 1, 0, 1)
-material = SubResource("CanvasItemMaterial_1w1t6")
-position = Vector2(20, 20)
-scale = Vector2(15, 15)
-mesh = SubResource("BoxMesh_gwgwb")
-
 [node name="Area2D" type="Area2D" parent="." unique_id=597820692]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1700943226]
-position = Vector2(20, 20)
 scale = Vector2(0.75, 0.75)
 shape = SubResource("RectangleShape2D_gwgwb")
 
 [node name="rayCastManager" type="Node2D" parent="." unique_id=1182362815]
-position = Vector2(20, 20)
 script = ExtResource("2_tnn6e")
 
 [node name="down" type="RayCast2D" parent="rayCastManager" unique_id=1159018322]
@@ -45,5 +100,10 @@ target_position = Vector2(-9, 0)
 
 [node name="right" type="RayCast2D" parent="rayCastManager" unique_id=1057084005]
 target_position = Vector2(9, 0)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=351899305]
+texture_filter = 1
+scale = Vector2(1.9, 1.9)
+sprite_frames = SubResource("SpriteFrames_ud12p")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

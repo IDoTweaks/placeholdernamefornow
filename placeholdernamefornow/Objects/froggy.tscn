@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://cgmynr8i7envo" path="res://Scripts/frog.gd" id="1_1m237"]
 [ext_resource type="PackedScene" uid="uid://ux8fnu4ys6vj" path="res://Objects/playerGui.tscn" id="3_erh77"]
 [ext_resource type="Texture2D" uid="uid://0ntrha332nkc" path="res://Art/Frog_Idle_Spritesheet.png" id="3_xs0qt"]
-[ext_resource type="Texture2D" uid="uid://cf21c2y18qooj" path="res://Art/tongue.png" id="3_yua7d"]
 [ext_resource type="Texture2D" uid="uid://cfdqtn207ylnr" path="res://Art/Open_Mouth.png" id="4_xs0qt"]
 [ext_resource type="Script" uid="uid://4816q0nwtxpv" path="res://Scripts/notification_canvas.gd" id="6_f6s1g"]
 
@@ -120,7 +119,7 @@ playerGui = NodePath("playerGui")
 
 [node name="Tongue" type="Line2D" parent="." unique_id=990262030]
 width = 5.0
-texture = ExtResource("3_yua7d")
+default_color = Color(1, 0.33817023, 0.4097507, 1)
 joint_mode = 2
 begin_cap_mode = 2
 end_cap_mode = 2
