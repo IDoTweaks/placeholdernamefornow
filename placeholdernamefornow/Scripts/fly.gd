@@ -7,6 +7,8 @@ extends Node2D
 @export var wanderRadius : float = 25.0 
 @export var arriveDist : float = 50.0
 
+@onready var rayManager = $rayCastManager
+
 @export var activated := false
 
 var targetPos : Vector2
@@ -33,8 +35,12 @@ func _physics_process(delta: float) -> void:
 			usedTargPos = targetPos 
 
 		var toTarget := usedTargPos - global_position
+		var wantVel := Vector2.ZERO
 		if toTarget.length() > 1.0:
-			global_position += toTarget.normalized() * speed * delta
+			wantVel = toTarget.normalized() * speed
+		wantVel += _buzz(buzzStrength)
+		wantVel = rayManager._check4collision(wantVel)
+		global_position += wantVel * delta
 
 		global_position += _buzz(buzzStrength) * delta
 
