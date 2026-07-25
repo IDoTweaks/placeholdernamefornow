@@ -140,20 +140,49 @@ func _point_and_tangent_at_distance(points: PackedVector2Array, distance: float)
 #i will work under here:D -- love
 
 @export var xpPerKill : int = 1
-var xp : int= 0
+var xp : float= 0
+var xpMult = 1.0
 var level: int = 0
 @export var xp2next : int = 10
 @export var perLevelMult : float = 1.2
 @export var playerGui : CanvasLayer
-
+var upgradeI = 0
+var upgrades = [
+	[1,"launchStrengthAdd",50],
+	[5,"xpMult",1.2],
+	[10,"xpAdd",1],
+	[15,"launchStrengthAdd",50]
+	]
 
 func _gainXp(ammount : int):
-	xp += ammount
+	xp += ammount * xpMult
 	_xpTick()
+	
+
+func _launchStrengthBuff(ammount : float):
+	launch_strength += ammount
+
+func _xpMultBuff(ammount : float):
+	xpMult += ammount
+
+func _xpAddBuff(ammount : float):
+	xpPerKill += ammount
 
 func _catchFly(fly):
 	fly.queue_free()
 	_gainXp(1)
+
+func _onLevelUp():
+	print("lvl")
+	if level == upgrades[upgradeI][0]:
+		if upgrades[upgradeI][1] == "xpMult":
+			_xpMultBuff(upgrades[upgradeI][2])
+		elif upgrades[upgradeI][1] == "xpAdd":
+			_xpAddBuff(upgrades[upgradeI][2])
+		elif upgrades[upgradeI][1] == "launchStrengthAdd":
+			_launchStrengthBuff(upgrades[upgradeI][2])
+			print(str(launch_strength))
+		upgradeI+=1
 
 func _xpTick():
 	if xp > xp2next:
@@ -161,6 +190,7 @@ func _xpTick():
 		xp2next *= perLevelMult
 		level+=1
 		_xpTick()
+		_onLevelUp()
 		playerGui._updateLvl(level)
 	playerGui._updateXp(xp)
 	
