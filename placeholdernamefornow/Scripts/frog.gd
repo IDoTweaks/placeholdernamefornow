@@ -17,7 +17,7 @@ extends RigidBody2D
 @export var max_angular_speed: float = 8.0
 @export var tumble_damp: float = 1.5
 @export var fall_speed_bonus: float = 0.6
-@export var kill_y: float = 2000.0
+@export var kill_y: float = 700.0
 
 var grounded = false
 @onready var frogFeet = $froggyYUMMYfeet
@@ -415,4 +415,4 @@ func _xpTick():
 		_xpTick()
 		_onLevelUp()
 		playerGui._updateLvl(level)
-	playerGui._updateXp(xp)
+	playerGui._updateXp(xp, xp2next)

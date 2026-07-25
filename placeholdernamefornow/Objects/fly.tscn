@@ -7,8 +7,9 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gwgwb"]
 
-[node name="Fly" type="Node2D" unique_id=1987323749]
+[node name="Fly" type="Node2D" unique_id=1987323749 groups=["fly"]]
 script = ExtResource("1_s0fce")
+activated = true
 
 [node name="flyBody" type="MeshInstance2D" parent="." unique_id=133690366]
 position = Vector2(20, 20)
