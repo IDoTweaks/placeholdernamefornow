@@ -17,6 +17,7 @@ var launch_path: PackedVector2Array = []
 var launch_progress := 0.0
 var launch_total_length := 0.0
 
+@export var growthPerLvl = .2
 var launchStrengthMult :=1
 
 @onready var aim_line: Line2D = $Tongue
@@ -195,6 +196,8 @@ func _catchFly(fly):
 	_gainXp(1)
 
 func _onLevelUp():
+	global_scale.x += growthPerLvl
+	global_scale.y += growthPerLvl
 	print("lvl")
 	if level == upgrades[upgradeI][0]:
 		if upgrades[upgradeI][1] == "xpMult":

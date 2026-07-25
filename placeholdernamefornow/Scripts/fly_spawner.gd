@@ -4,6 +4,8 @@ extends Node2D
 @export var minSpawnDist := 100.0
 @export var maxSpawnDist := 1100.0
 
+@onready var flySpawnTimer = $flySpawnTimer
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
@@ -25,3 +27,7 @@ func _spawnFly() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
+
+
+func _on_fly_spawn_timer_timeout() -> void:
+	pass # Replace with function body.

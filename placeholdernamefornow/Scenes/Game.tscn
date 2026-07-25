@@ -1,8 +1,7 @@
 [gd_scene format=4 uid="uid://bgebxggo7hb8p"]
 
-[ext_resource type="Script" uid="uid://dp6qfn06reioe" path="res://Scripts/fly_spawner.gd" id="1_iukft"]
+[ext_resource type="PackedScene" uid="uid://b0wqk4omypuo4" path="res://Objects/fly_spawner.tscn" id="1_j5yw3"]
 [ext_resource type="PackedScene" uid="uid://im3rwyg2h68g" path="res://Objects/froggy.tscn" id="2_gl6un"]
-[ext_resource type="PackedScene" uid="uid://h6071114lwx3" path="res://Objects/fly.tscn" id="2_j5yw3"]
 [ext_resource type="Texture2D" uid="uid://dafy3xd6wpclt" path="res://Art/brick.png" id="4_kldst"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_b2bpf"]
@@ -16,14 +15,7 @@ sources/0 = SubResource("TileSetAtlasSource_b2bpf")
 
 [node name="Game" type="Node2D" unique_id=1443618020]
 
-[node name="flySpawner" type="Node2D" parent="." unique_id=1286943193 node_paths=PackedStringArray("player", "fly")]
-script = ExtResource("1_iukft")
-player = NodePath("../Froggy")
-fly = NodePath("Fly")
-
-[node name="Fly" parent="flySpawner" unique_id=1987323749 instance=ExtResource("2_j5yw3")]
-position = Vector2(-296, -203)
-targetPos = Vector2(-100, -100)
+[node name="flySpawner" parent="." unique_id=1397887174 instance=ExtResource("1_j5yw3")]
 
 [node name="Froggy" parent="." unique_id=79017155 instance=ExtResource("2_gl6un")]
 constant_force = Vector2(0, -23.485)

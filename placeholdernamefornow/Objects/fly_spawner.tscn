@@ -3,9 +3,14 @@
 [ext_resource type="Script" uid="uid://7gmqtp1oahgl" path="res://Scripts/fly_spawner.gd" id="1_eoxdb"]
 [ext_resource type="PackedScene" uid="uid://h6071114lwx3" path="res://Objects/fly.tscn" id="2_qri82"]
 
-[node name="flySpawner" type="Node2D" unique_id=1311890705]
+[node name="flySpawner" type="Node2D" unique_id=1397887174 node_paths=PackedStringArray("fly")]
 script = ExtResource("1_eoxdb")
+fly = NodePath("Fly")
 
 [node name="Fly" parent="." unique_id=1987323749 instance=ExtResource("2_qri82")]
 position = Vector2(-296, -203)
-targetPos = Vector2(-100, -100)
+
+[node name="flySpawnTimer" type="Timer" parent="." unique_id=1953956745]
+autostart = true
+
+[connection signal="timeout" from="flySpawnTimer" to="." method="_on_fly_spawn_timer_timeout"]
