@@ -42,6 +42,9 @@ func _physics_process(delta: float) -> void:
 func _buzz(strength : float) -> Vector2:
 	return Vector2(randf_range(-strength, strength), randf_range(-strength, strength))
 
+func _get_eaten():
+	queue_free()
+	player._gainXp(1)
 
 func _updateUsedPos() -> void:
 	usedTargPos = targetPos + Vector2(

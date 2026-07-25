@@ -78,6 +78,7 @@ animations = [{
 [node name="Froggy" type="RigidBody2D" unique_id=79017155 node_paths=PackedStringArray("playerGui")]
 physics_material_override = SubResource("PhysicsMaterial_bq1xi")
 script = ExtResource("1_1m237")
+xp2next = 1
 playerGui = NodePath("playerGui")
 
 [node name="Tongue" type="Line2D" parent="." unique_id=990262030]
