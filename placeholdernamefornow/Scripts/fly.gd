@@ -18,6 +18,7 @@ var _wanderTimer : float = 0.0
 
 func _ready() -> void:
 	if is_instance_valid(player):
+		rayManager.player = player
 		targetPos = player.global_position
 	usedTargPos = targetPos
 	_updateUsedPos()
