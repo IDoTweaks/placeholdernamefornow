@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://cgmynr8i7envo" path="res://Scripts/frog.gd" id="1_1m237"]
 [ext_resource type="Texture2D" uid="uid://cakt3j7a6sism" path="res://Assets/forg.jpg" id="2_bq1xi"]
 [ext_resource type="PackedScene" uid="uid://ux8fnu4ys6vj" path="res://Objects/playerGui.tscn" id="3_erh77"]
+[ext_resource type="Texture2D" uid="uid://cf21c2y18qooj" path="res://Art/tongue.png" id="3_yua7d"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_bq1xi"]
 friction = 0.5
@@ -29,5 +30,6 @@ zoom = Vector2(1.1, 1.1)
 position_smoothing_enabled = true
 
 [node name="Tongue" type="Line2D" parent="." unique_id=990262030]
+texture = ExtResource("3_yua7d")
 
 [node name="playerGui" parent="." unique_id=1876833448 instance=ExtResource("3_erh77")]
