@@ -5,32 +5,41 @@
 [node name="playerGui" type="CanvasLayer" unique_id=1876833448]
 script = ExtResource("1_nm2lf")
 
-[node name="xp" type="Node" parent="." unique_id=546398512]
-
-[node name="randomAhhLabel" type="Label" parent="xp" unique_id=987770564]
-offset_right = 25.0
-offset_bottom = 23.0
-text = "XP:"
-
-[node name="showXp" type="Label" parent="xp" unique_id=568861117]
-offset_left = 23.0
-offset_right = 42.0
-offset_bottom = 23.0
-text = "0"
-autowrap_trim_flags = 0
-
 [node name="lvl" type="Node" parent="." unique_id=588867052]
 
 [node name="randomAhhLabel" type="Label" parent="lvl" unique_id=85657028]
-offset_top = 23.0
-offset_right = 25.0
-offset_bottom = 46.0
+offset_left = -1.0
+offset_top = 7.0
+offset_right = 69.0
+offset_bottom = 37.0
+theme_override_font_sizes/font_size = 20
 text = "Level:"
 
 [node name="showLvl" type="Label" parent="lvl" unique_id=1695433150]
-offset_left = 44.0
-offset_top = 23.0
-offset_right = 63.0
-offset_bottom = 46.0
+offset_left = 71.0
+offset_top = 7.0
+offset_right = 99.0
+offset_bottom = 37.0
+theme_override_font_sizes/font_size = 20
 text = "0"
 autowrap_trim_flags = 0
+
+[node name="xpBar" type="ProgressBar" parent="." unique_id=712400391]
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 100.0
+offset_top = 10.0
+offset_right = -100.0
+offset_bottom = 34.0
+grow_horizontal = 2
+max_value = 10.0
+show_percentage = false
+
+[node name="xpLabel" type="Label" parent="xpBar" unique_id=712400392]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme_override_font_sizes/font_size = 16
+text = "0 / 10 XP"
+horizontal_alignment = 1
+vertical_alignment = 1

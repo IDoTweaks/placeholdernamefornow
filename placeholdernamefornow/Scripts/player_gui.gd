@@ -1,17 +1,29 @@
 extends CanvasLayer
-@onready var xpTxt = $xp/showXp
-@onready var lvlTxt = $lvl/showLvl
+@onready var lvlTxt: Label = $lvl/showLvl
+@onready var xpBar: ProgressBar = $xpBar
+@onready var xpLabel: Label = $xpBar/xpLabel
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
+var xp_tween: Tween
 
-func _updateXp(val : int):
-	xpTxt.text = str(val)
+func _updateXp(current: int, target: int) -> void:
+	xpBar.max_value = target
+	xpLabel.text = "%d / %d XP" % [current, target]
+	if xp_tween:
+		xp_tween.kill()
+	xp_tween = create_tween()
+	xp_tween.set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+	xp_tween.tween_property(xpBar, "value", current, 0.35)
 
-func _updateLvl(val : int):
+func _updateLvl(val : int) -> void:
 	lvlTxt.text = str(val)
+	_pulseLevelUp()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+func _pulseLevelUp() -> void:
+	lvlTxt.scale = Vector2.ONE
+	var pulse := create_tween()
+	pulse.tween_property(lvlTxt, "scale", Vector2(1.5, 1.5), 0.12).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	pulse.tween_property(lvlTxt, "scale", Vector2.ONE, 0.18).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN)
+
+	xpBar.modulate = Color(1.6, 1.3, 0.5)
+	var flash := create_tween()
+	flash.tween_property(xpBar, "modulate", Color.WHITE, 0.4)

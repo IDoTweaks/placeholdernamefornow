@@ -14,11 +14,15 @@ bounce = 0.3
 [node name="Froggy" type="RigidBody2D" unique_id=79017155 node_paths=PackedStringArray("playerGui")]
 physics_material_override = SubResource("PhysicsMaterial_bq1xi")
 script = ExtResource("1_1m237")
-launch_strength = 800.0
 playerGui = NodePath("playerGui")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=336494959]
 shape = SubResource("CircleShape2D_bq1xi")
+
+[node name="Tongue" type="Line2D" parent="." unique_id=990262030]
+texture = ExtResource("3_yua7d")
+joint_mode = 2
+end_cap_mode = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1695735601]
 scale = Vector2(0.035, 0.055)
@@ -28,9 +32,6 @@ texture = ExtResource("2_bq1xi")
 scale = Vector2(0.035, 0.055)
 zoom = Vector2(1.1, 1.1)
 position_smoothing_enabled = true
-
-[node name="Tongue" type="Line2D" parent="." unique_id=990262030]
-texture = ExtResource("3_yua7d")
 
 [node name="playerGui" parent="." unique_id=1876833448 instance=ExtResource("3_erh77")]
 
