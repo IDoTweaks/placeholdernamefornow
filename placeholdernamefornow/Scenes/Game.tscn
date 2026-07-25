@@ -1,7 +1,7 @@
 [gd_scene format=4 uid="uid://bgebxggo7hb8p"]
 
-[ext_resource type="PackedScene" uid="uid://b0wqk4omypuo4" path="res://Objects/fly_spawner.tscn" id="1_j5yw3"]
 [ext_resource type="PackedScene" uid="uid://im3rwyg2h68g" path="res://Objects/froggy.tscn" id="2_gl6un"]
+[ext_resource type="PackedScene" uid="uid://h6071114lwx3" path="res://Objects/fly.tscn" id="2_j5yw3"]
 [ext_resource type="Texture2D" uid="uid://dafy3xd6wpclt" path="res://Art/brick.png" id="4_kldst"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_b2bpf"]
@@ -15,8 +15,6 @@ sources/0 = SubResource("TileSetAtlasSource_b2bpf")
 
 [node name="Game" type="Node2D" unique_id=1443618020]
 
-[node name="flySpawner" parent="." unique_id=1397887174 instance=ExtResource("1_j5yw3")]
-
 [node name="Froggy" parent="." unique_id=79017155 instance=ExtResource("2_gl6un")]
 constant_force = Vector2(0, -23.485)
 
@@ -25,3 +23,12 @@ texture_filter = 1
 position = Vector2(358, 255)
 tile_map_data = PackedByteArray("AAD/////AAAAAAAAAAD//wAAAAAAAAAAAAD+/wAAAAAAAAAAAAD9/wAAAAAAAAAAAAD8/wAAAAAAAAAAAAD7/wAAAAAAAAAAAAD6/wAAAAAAAAAAAAD5/wAAAAAAAAAAAAD4/wAAAAAAAAAAAAD3/wAAAAAAAAAAAAD2/wAAAAAAAAAAAAD1/wAAAAAAAAAAAAD0/wAAAAAAAAAAAADz/wAAAAAAAAAAAADy/wAAAAAAAAAAAADx/wAAAAAAAAAAAADw/wAAAAAAAAAAAADv/wAAAAAAAAAAAADu/wAAAAAAAAAAAADt/wAAAAAAAAAAAADs/wAAAAAAAAAAAADr/wAAAAAAAAAAAADq/wAAAAAAAAAAAADq////AAAAAAAAAADp////AAAAAAAAAADp//7/AAAAAAAAAADo//7/AAAAAAAAAADn//7/AAAAAAAAAADn//3/AAAAAAAAAADm//3/AAAAAAAAAADm//z/AAAAAAAAAADm//v/AAAAAAAAAADm//r/AAAAAAAAAADl//r/AAAAAAAAAADl//n/AAAAAAAAAADk//n/AAAAAAAAAAD5//z/AAAAAAAAAAD4//z/AAAAAAAAAAD3//z/AAAAAAAAAAD2//z/AAAAAAAAAAD1//z/AAAAAAAAAAD0//z/AAAAAAAAAADz//z/AAAAAAAAAADy//z/AAAAAAAAAAD8//f/AAAAAAAAAAD9//f/AAAAAAAAAAD+//f/AAAAAAAAAAD///f/AAAAAAAAAAAAAPf/AAAAAAAAAAABAPf/AAAAAAAAAAACAPf/AAAAAAAAAAADAPf/AAAAAAAAAAA=")
 tile_set = SubResource("TileSet_7lihs")
+
+[node name="Fly" parent="." unique_id=1987323749 node_paths=PackedStringArray("player") instance=ExtResource("2_j5yw3")]
+position = Vector2(231, 155)
+player = NodePath("../Froggy")
+
+[node name="Fly2" parent="." unique_id=1936282248 node_paths=PackedStringArray("player") instance=ExtResource("2_j5yw3")]
+position = Vector2(159, 155)
+player = NodePath("../Froggy")
+activated = true

@@ -7,6 +7,8 @@ extends Node2D
 @export var wanderRadius : float = 25.0 
 @export var arriveDist : float = 50.0
 
+@export var activated := false
+
 var targetPos : Vector2
 var usedTargPos : Vector2
 var _wanderTimer : float = 0.0
@@ -18,23 +20,23 @@ func _ready() -> void:
 	usedTargPos = targetPos
 	_updateUsedPos()
 
-
 func _physics_process(delta: float) -> void:
-	if is_instance_valid(player):
-		targetPos = player.global_position
-	if global_position.distance_to(targetPos) > arriveDist:
-		_wanderTimer -= delta
-		if _wanderTimer <= 0.0:
-			_updateUsedPos()
-			_wanderTimer = randf_range(0.3, 0.8)
-	else:
-		usedTargPos = targetPos 
+	if activated:
+		if is_instance_valid(player):
+			targetPos = player.global_position
+		if global_position.distance_to(targetPos) > arriveDist:
+			_wanderTimer -= delta
+			if _wanderTimer <= 0.0:
+				_updateUsedPos()
+				_wanderTimer = randf_range(0.3, 0.8)
+		else:
+			usedTargPos = targetPos 
 
-	var toTarget := usedTargPos - global_position
-	if toTarget.length() > 1.0:
-		global_position += toTarget.normalized() * speed * delta
+		var toTarget := usedTargPos - global_position
+		if toTarget.length() > 1.0:
+			global_position += toTarget.normalized() * speed * delta
 
-	global_position += _buzz(buzzStrength) * delta
+		global_position += _buzz(buzzStrength) * delta
 
 
 func _buzz(strength : float) -> Vector2:
