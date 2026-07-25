@@ -16,7 +16,7 @@ color = Color(0.9724719, 0.00094163, 0.9968299, 1)
 [node name="drawParticles" type="GPUParticles2D" unique_id=1181509879]
 emitting = false
 amount = 16
-lifetime = 0.060000000000000005
+lifetime = 0.05
 one_shot = true
 explosiveness = 0.74
 randomness = 1.0
