@@ -44,7 +44,7 @@ var aim_mouse_anchor: Vector2 = Vector2.ZERO
 var launchStrengthMult :=1
 
 @onready var aim_line: Line2D = $Tongue
-@onready var sprite: Sprite2D = $Sprite2D
+@onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var cam: Camera2D = $Camera2D
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
 
