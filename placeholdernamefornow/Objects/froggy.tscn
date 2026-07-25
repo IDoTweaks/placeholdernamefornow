@@ -109,6 +109,9 @@ animations = [{
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bq1xi"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xs0qt"]
+bg_color = Color(0.44313726, 1, 0.35686275, 1)
+
 [node name="Froggy" type="RigidBody2D" unique_id=79017155 node_paths=PackedStringArray("playerGui")]
 physics_material_override = SubResource("PhysicsMaterial_bq1xi")
 script = ExtResource("1_1m237")
@@ -144,4 +147,50 @@ target_position = Vector2(0, 24)
 [node name="froggyYUMMYfeet" type="Node2D" parent="." unique_id=590660914]
 position = Vector2(0, 9)
 
+[node name="notificationCanvas" type="CanvasLayer" parent="." unique_id=1551593118]
+visible = false
+
+[node name="Window" type="Window" parent="notificationCanvas" unique_id=682565777]
+oversampling_override = 1.0
+title = "YOU RECIVED A BUFF!"
+position = Vector2i(441, 255)
+size = Vector2i(250, 250)
+visible = false
+theme_override_colors/title_color = Color(0, 1, 0, 1)
+theme_override_font_sizes/title_font_size = 19
+
+[node name="buffTxt" type="Label" parent="notificationCanvas/Window" unique_id=147220612]
+z_index = 1
+offset_left = -2.0
+offset_top = 3.0
+offset_right = 248.0
+offset_bottom = 202.0
+theme_override_colors/font_color = Color(9.0004505e-06, 0.691436, 5.7756904e-07, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0)
+text = "PLACEHOLDERRR"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="randomAhhTxt" type="Label" parent="notificationCanvas/Window" unique_id=1910264275]
+z_index = 1
+offset_left = -6.0
+offset_top = 203.0
+offset_right = 266.0
+offset_bottom = 252.0
+theme_override_colors/font_color = Color(9.0004505e-06, 0.691436, 5.7756904e-07, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0)
+theme_override_font_sizes/font_size = 13
+text = "THE GAME WILL RESUME
+ONCE YOU CLICK THE EXIT BUTTON"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Panel" type="Panel" parent="notificationCanvas/Window" unique_id=1029005277]
+offset_left = 5.0
+offset_top = 210.0
+offset_right = 250.0
+offset_bottom = 250.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_xs0qt")
+
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_sprite_animation_finished"]
+[connection signal="close_requested" from="notificationCanvas/Window" to="." method="_on_window_close_requested"]
