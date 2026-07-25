@@ -1,13 +1,16 @@
 extends CanvasLayer
+
 @onready var lvlTxt: Label = $lvl/showLvl
 @onready var xpBar: ProgressBar = $xpBar
 @onready var xpLabel: Label = $xpBar/xpLabel
-
 var xp_tween: Tween
 
-func _updateXp(current: int, target: int) -> void:
+func _ready() -> void:
+	process_mode = Node.PROCESS_MODE_ALWAYS
+
+func _updateXp(current: float, target: float) -> void:
 	xpBar.max_value = target
-	xpLabel.text = "%d / %d XP" % [current, target]
+	xpLabel.text = "%d / %d XP" % [floori(current), ceili(target)]
 	if xp_tween:
 		xp_tween.kill()
 	xp_tween = create_tween()

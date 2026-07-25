@@ -71,7 +71,7 @@ func _ready() -> void:
 	spawn_position = global_position
 	spawn_rotation = rotation
 	if playerGui:
-		playerGui._updateXp(xp, xp2next)
+		playerGui.call_deferred("_updateXp", xp, xp2next)
 
 func _physics_process(delta: float) -> void:
 	#if global_position.y > kill_y or global_position.y < maxY:
@@ -380,9 +380,9 @@ func _remaining_path_points(points: PackedVector2Array, distance: float) -> Pack
 
 @export var xpPerKill : int = 1
 var xp : float= 0
-var xpMult = 1.0
+var xpMult := 1.0
 var level: int = 0
-@export var xp2next : int = 3
+@export var xp2next : float = 3
 @export var perLevelMult : float = 1.2
 @export var playerGui : CanvasLayer
 var upgradeI = 0
@@ -451,7 +451,7 @@ func _onLevelUp():
 	global_scale.x += growthPerLvl
 	global_scale.y += growthPerLvl
 	print("lvl")
-	if level == upgrades[upgradeI][0]:
+	if upgradeI < upgrades.size() and level == upgrades[upgradeI][0]:
 		get_tree().paused = true
 		if upgrades[upgradeI][1] == "xpMult":
 			_xpMultBuff(upgrades[upgradeI][2])
@@ -504,13 +504,13 @@ func _onLevelUp():
 		upgradeI+=1
 
 func _xpTick():
-	if xp > xp2next:
+	if xp >= xp2next:
 		xp -= xp2next
 		xp2next *= perLevelMult
 		level+=1
-		_xpTick()
 		_onLevelUp()
 		playerGui._updateLvl(level)
+		_xpTick()
 	playerGui._updateXp(xp, xp2next)
 
 
