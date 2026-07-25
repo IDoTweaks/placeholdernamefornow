@@ -1,17 +1,17 @@
 extends RigidBody2D
 
-@export var max_tongue_length: float = 1000.0
+@export var max_tongue_length: float = 600.0
 @export var min_point_distance: float = 14.0
 @export var launch_strength: float = 80.0
 @export var min_launch_speed: float = 150.0
 @export var max_launch_speed: float = 1200.0
 @export var max_speed: float = 1500.0
-@export var path_travel_speed: float = 1000.0
-@export var path_travel_accel: float = 300.0
+@export var path_travel_speed: float = 700.0
+@export var path_travel_accel: float = 200.0
 @export var path_travel_max_speed: float = 800.0
 @export var collision_step_length: float = 8.0
 @export var grapple_collision_mask: int = 1
-@export var move_accel: float = 900.0
+@export var move_accel: float = 600.0
 @export var idle_drag: float = 0.15
 @export var tumble_strength: float = 5.0
 @export var max_angular_speed: float = 8.0
@@ -19,6 +19,7 @@ extends RigidBody2D
 @export var fall_speed_bonus: float = 0.6
 @export var kill_y: float = 700.0
 @export var maxY : float
+@export var mouth_open_distance: float = 150.0
 
 var grounded = false
 @onready var frogFeet = $froggyYUMMYfeet
@@ -40,6 +41,7 @@ var launch_progress := 0.0
 var launch_total_length := 0.0
 var launch_travel_speed := 0.0
 var aim_screen_offset: Vector2 = Vector2.ZERO
+@export var aim_viewport_margin: float = 24.0
 
 @export var growthPerLvl = .2
 var launchStrengthMult :=1
@@ -54,6 +56,7 @@ var cam_base_zoom: Vector2
 var sprite_tween: Tween
 var cam_tween: Tween
 var rotation_tween: Tween
+var near_fly := false
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -82,6 +85,8 @@ func _physics_process(delta: float) -> void:
 
 	if is_aiming and not tongue_points.is_empty():
 		_update_tongue_base()
+
+	_update_mouth_state()
 
 	if is_launching:
 		_advance_launch(delta)
@@ -112,9 +117,30 @@ func _unhandled_input(event: InputEvent) -> void:
 		aim_screen_offset += event.relative
 		_extend_tongue(_aim_relative_target(aim_screen_offset))
 
+func _update_mouth_state() -> void:
+	var is_near := _is_near_fly()
+	if is_near == near_fly:
+		return
+	near_fly = is_near
+	if near_fly:
+		sprite.play(&"mouth_open", 1.0)
+	else:
+		sprite.play(&"mouth_open", -1.0)
+
+func _is_near_fly() -> bool:
+	for fly in get_tree().get_nodes_in_group("fly"):
+		if fly is Node2D and global_position.distance_to(fly.global_position) <= mouth_open_distance:
+			return true
+	return false
+
+func _on_sprite_animation_finished() -> void:
+	if sprite.animation == &"mouth_open" and not near_fly:
+		sprite.play(&"idle")
+
 func _aim_relative_target(screen_offset: Vector2) -> Vector2:
+	var last: Vector2 = tongue_points[tongue_points.size() - 1] if not tongue_points.is_empty() else global_position
 	var world_delta := get_viewport().canvas_transform.affine_inverse().basis_xform(screen_offset)
-	return global_position + world_delta
+	return last + world_delta
 
 func _start_aim() -> void:
 	is_aiming = true
@@ -124,9 +150,25 @@ func _start_aim() -> void:
 	aim_line.points = tongue_points
 	_extend_tongue(_aim_relative_target(aim_screen_offset))
 
+func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
+	if not is_grappled or is_launching or tongue_points.is_empty():
+		return
+	var anchor: Vector2 = tongue_points[tongue_points.size() - 1]
+	var pos := state.transform.origin
+	var offset := pos - anchor
+	var dist := offset.length()
+	if dist <= max_tongue_length or dist <= 0.0:
+		return
+	var dir := offset / dist
+	var new_transform := state.transform
+	new_transform.origin = anchor + dir * max_tongue_length
+	state.transform = new_transform
+	var radial_speed := state.linear_velocity.dot(dir)
+	if radial_speed > 0.0:
+		state.linear_velocity -= dir * radial_speed
+
 func _update_tongue_base() -> void:
-	var base: Vector2 = tongue_points[0]
-	if base.distance_to(global_position) >= min_point_distance:
+	if not is_grappled and tongue_points.size() >= 2 and tongue_points[1].distance_to(global_position) >= min_point_distance:
 		tongue_points.insert(0, global_position)
 	else:
 		tongue_points[0] = global_position
@@ -169,6 +211,7 @@ func _extend_tongue(target: Vector2) -> void:
 	tempParticles.emitting = true
 	tongue_points.append(target)
 	aim_line.points = tongue_points
+	aim_screen_offset = Vector2.ZERO
 
 func _try_eat(collider: Object) -> void:
 	if collider == null:
@@ -258,6 +301,8 @@ func _respawn() -> void:
 	if sprite_tween:
 		sprite_tween.kill()
 	sprite.scale = sprite_base_scale
+	near_fly = false
+	sprite.play(&"idle")
 	if cam_tween:
 		cam_tween.kill()
 	cam.zoom = cam_base_zoom
@@ -336,7 +381,7 @@ func _remaining_path_points(points: PackedVector2Array, distance: float) -> Pack
 var xp : float= 0
 var xpMult = 1.0
 var level: int = 0
-@export var xp2next : int = 10
+@export var xp2next : int = 3
 @export var perLevelMult : float = 1.2
 @export var playerGui : CanvasLayer
 var upgradeI = 0

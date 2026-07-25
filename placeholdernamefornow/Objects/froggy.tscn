@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://ux8fnu4ys6vj" path="res://Objects/playerGui.tscn" id="3_erh77"]
 [ext_resource type="Texture2D" uid="uid://0ntrha332nkc" path="res://Art/Frog_Idle_Spritesheet.png" id="3_xs0qt"]
 [ext_resource type="Texture2D" uid="uid://cf21c2y18qooj" path="res://Art/tongue.png" id="3_yua7d"]
+[ext_resource type="Texture2D" uid="uid://cfdqtn207ylnr" path="res://Art/Open_Mouth.png" id="4_xs0qt"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_bq1xi"]
 friction = 0.5
@@ -41,6 +42,22 @@ region = Rect2(162, 0, 27, 28)
 atlas = ExtResource("3_xs0qt")
 region = Rect2(189, 0, 27, 28)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_cu8eh"]
+atlas = ExtResource("4_xs0qt")
+region = Rect2(0, 0, 25, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ktc3b"]
+atlas = ExtResource("4_xs0qt")
+region = Rect2(25, 0, 25, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pv465"]
+atlas = ExtResource("4_xs0qt")
+region = Rect2(50, 0, 25, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1atok"]
+atlas = ExtResource("4_xs0qt")
+region = Rect2(75, 0, 25, 28)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_cu8eh"]
 animations = [{
 "frames": [{
@@ -71,6 +88,23 @@ animations = [{
 "loop": true,
 "name": &"idle",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cu8eh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ktc3b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pv465")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1atok")
+}],
+"loop": false,
+"name": &"mouth_open",
+"speed": 5.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bq1xi"]
@@ -78,10 +112,10 @@ animations = [{
 [node name="Froggy" type="RigidBody2D" unique_id=79017155 node_paths=PackedStringArray("playerGui")]
 physics_material_override = SubResource("PhysicsMaterial_bq1xi")
 script = ExtResource("1_1m237")
-xp2next = 1
 playerGui = NodePath("playerGui")
 
 [node name="Tongue" type="Line2D" parent="." unique_id=990262030]
+width = 5.0
 texture = ExtResource("3_yua7d")
 joint_mode = 2
 begin_cap_mode = 2
@@ -109,3 +143,5 @@ target_position = Vector2(0, 24)
 
 [node name="froggyYUMMYfeet" type="Node2D" parent="." unique_id=590660914]
 position = Vector2(0, 9)
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_sprite_animation_finished"]
