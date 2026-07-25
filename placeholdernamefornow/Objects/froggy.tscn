@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://0ntrha332nkc" path="res://Art/Frog_Idle_Spritesheet.png" id="3_xs0qt"]
 [ext_resource type="Texture2D" uid="uid://cf21c2y18qooj" path="res://Art/tongue.png" id="3_yua7d"]
 [ext_resource type="Texture2D" uid="uid://cfdqtn207ylnr" path="res://Art/Open_Mouth.png" id="4_xs0qt"]
+[ext_resource type="Script" uid="uid://4816q0nwtxpv" path="res://Scripts/notification_canvas.gd" id="6_f6s1g"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_bq1xi"]
 friction = 0.5
@@ -158,6 +159,7 @@ size = Vector2i(250, 250)
 visible = false
 theme_override_colors/title_color = Color(0, 1, 0, 1)
 theme_override_font_sizes/title_font_size = 19
+script = ExtResource("6_f6s1g")
 
 [node name="buffTxt" type="Label" parent="notificationCanvas/Window" unique_id=147220612]
 z_index = 1
@@ -170,6 +172,7 @@ theme_override_colors/font_shadow_color = Color(0, 0, 0, 0)
 text = "PLACEHOLDERRR"
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 2
 
 [node name="randomAhhTxt" type="Label" parent="notificationCanvas/Window" unique_id=1910264275]
 z_index = 1

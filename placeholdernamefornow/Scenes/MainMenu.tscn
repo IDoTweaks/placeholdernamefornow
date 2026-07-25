@@ -3,6 +3,17 @@
 [ext_resource type="Script" uid="uid://cp7kts0l06qtm" path="res://Scripts/main_menu.gd" id="1_8saeu"]
 [ext_resource type="Texture2D" uid="uid://b5t2ceiosrahm" path="res://Art/Background.png" id="1_853f1"]
 [ext_resource type="Texture2D" uid="uid://b0oqpcomawlng" path="res://Art/WhatsApp Image 2026-07-25 at 17.30.28.jpeg" id="2_8saeu"]
+[ext_resource type="Texture2D" uid="uid://dd3b6rcfrykfo" path="res://Art/play_button.png" id="4_ghw46"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_df05h"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8um5k"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xim88"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_koqhg"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cmrfp"]
 
 [node name="MainMenu" type="Control" unique_id=705486862]
 layout_mode = 3
@@ -42,11 +53,16 @@ texture = ExtResource("2_8saeu")
 layout_mode = 0
 offset_left = 3.0
 offset_top = 342.0
-offset_right = 232.0
-offset_bottom = 452.0
-theme_override_colors/font_color = Color(0.63865566, 0.9747136, 0.6035946, 1)
-theme_override_colors/font_hover_color = Color(0, 0.9490196, 0, 1)
-theme_override_font_sizes/font_size = 74
-text = "START"
+offset_right = 250.0
+offset_bottom = 480.0
+theme_override_font_sizes/font_size = 16
+theme_override_icons/icon = ExtResource("4_ghw46")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_df05h")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_8um5k")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_xim88")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_koqhg")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_cmrfp")
+icon = ExtResource("4_ghw46")
+expand_icon = true
 
 [connection signal="button_down" from="Button" to="." method="_on_button_button_down"]
