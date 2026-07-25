@@ -1,4 +1,4 @@
-[gd_scene format=4 uid="uid://y5aq8vj7dcjh"]
+[gd_scene format=4 uid="uid://bgebxggo7hb8p"]
 
 [ext_resource type="Script" uid="uid://dp6qfn06reioe" path="res://Scripts/fly_spawner.gd" id="1_iukft"]
 [ext_resource type="PackedScene" uid="uid://im3rwyg2h68g" path="res://Objects/froggy.tscn" id="2_gl6un"]

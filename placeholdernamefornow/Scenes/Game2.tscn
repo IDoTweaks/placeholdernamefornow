@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://y5aq8vj7dcjh"]
+
+[ext_resource type="PackedScene" uid="uid://b0wqk4omypuo4" path="res://Objects/fly_spawner.tscn" id="1_whh81"]
+[ext_resource type="PackedScene" uid="uid://im3rwyg2h68g" path="res://Objects/froggy.tscn" id="3_3lynq"]
+
+[node name="Game" type="Node2D" unique_id=1443618020]
+
+[node name="flySpawner" parent="." unique_id=1311890705 instance=ExtResource("1_whh81")]
+
+[node name="Froggy" parent="." unique_id=79017155 instance=ExtResource("3_3lynq")]

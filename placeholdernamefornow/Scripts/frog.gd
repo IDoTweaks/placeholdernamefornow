@@ -151,6 +151,9 @@ func _gainXp(ammount : int):
 	xp += ammount
 	_xpTick()
 
+func _catchFly(fly):
+	fly.queue_free()
+	_gainXp(1)
 
 func _xpTick():
 	if xp > xp2next:

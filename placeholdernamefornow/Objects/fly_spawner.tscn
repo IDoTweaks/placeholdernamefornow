@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://b0wqk4omypuo4"]
+
+[ext_resource type="Script" uid="uid://7gmqtp1oahgl" path="res://Scripts/fly_spawner.gd" id="1_eoxdb"]
+[ext_resource type="PackedScene" uid="uid://h6071114lwx3" path="res://Objects/fly.tscn" id="2_qri82"]
+
+[node name="flySpawner" type="Node2D" unique_id=1311890705]
+script = ExtResource("1_eoxdb")
+
+[node name="Fly" parent="." unique_id=1987323749 instance=ExtResource("2_qri82")]
+position = Vector2(-296, -203)
+targetPos = Vector2(-100, -100)

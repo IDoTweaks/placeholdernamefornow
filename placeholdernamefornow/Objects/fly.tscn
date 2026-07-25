@@ -8,17 +8,17 @@
 
 [node name="Fly" type="Node2D" unique_id=1987323749]
 script = ExtResource("1_s0fce")
-targetPos = Vector2(500, 300)
 
 [node name="flyBody" type="MeshInstance2D" parent="." unique_id=133690366]
 position = Vector2(20, 20)
-scale = Vector2(20, 20)
+scale = Vector2(5, 5)
 mesh = SubResource("BoxMesh_gwgwb")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=597820692]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1700943226]
 position = Vector2(20, 20)
+scale = Vector2(0.25, 0.25)
 shape = SubResource("RectangleShape2D_gwgwb")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
