@@ -17,7 +17,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 	get_tree().call_group("checkpoint", "_deactivate")
 	activated = true
 	flag.color = active_color
-	body._set_checkpoint(global_position)
+	body._set_checkpoint(body.global_position)
 
 func _deactivate() -> void:
 	if not activated:
