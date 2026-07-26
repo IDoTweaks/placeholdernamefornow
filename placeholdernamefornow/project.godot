@@ -15,6 +15,10 @@ run/main_scene="uid://b3alsvctiehkw"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+FullscreenToggle="*res://Scripts/fullscreen_toggle.gd"
+
 [display]
 
 window/stretch/mode="viewport"

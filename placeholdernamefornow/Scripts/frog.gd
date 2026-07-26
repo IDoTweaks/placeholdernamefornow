@@ -377,6 +377,10 @@ func _collision_clearance() -> float:
 		return shape.radius
 	return min_point_distance
 
+func _set_checkpoint(pos: Vector2, rot: float = 0.0) -> void:
+	spawn_position = pos
+	spawn_rotation = rot
+
 func _respawn() -> void:
 	is_aiming = false
 	is_grappled = false

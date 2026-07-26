@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://fu7w6ipk1jss" path="res://Art/spike.png" id="8_spike"]
 [ext_resource type="Texture2D" uid="uid://cq8rjxkdpdoee" path="res://Art/bouncy.png" id="9_bouncy"]
 [ext_resource type="PackedScene" path="res://Objects/gun_pickup.tscn" id="10_71axn"]
+[ext_resource type="PackedScene" path="res://Objects/checkpoint.tscn" id="11_chkpt"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_b2bpf"]
 texture = ExtResource("4_kldst")
@@ -128,3 +129,6 @@ wanderRadius = 35.0
 
 [node name="GunPickup" parent="." unique_id=1625367654 instance=ExtResource("10_71axn")]
 position = Vector2(1051, -835)
+
+[node name="Checkpoint" parent="." unique_id=1336245807 instance=ExtResource("11_chkpt")]
+position = Vector2(1088, -798)
