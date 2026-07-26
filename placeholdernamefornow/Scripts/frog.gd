@@ -330,6 +330,7 @@ func _release_tongue() -> void:
 		launch_total_length = _path_length(launch_path)
 		launch_progress = 0.0
 		launch_travel_speed = path_travel_speed
+		_onLaunch()
 		if launch_total_length < 1.0:
 			_finish_launch(launch_path[launch_path.size() - 1] - launch_path[0])
 		else:
@@ -531,6 +532,15 @@ func _catchFly(fly):
 
 @onready var notifCanv = $notificationCanvas/Window
 @onready var buffTxt = $notificationCanvas/Window/buffTxt
+@onready var launchSfx = $launchSfx
+var ribbits = [0.52, 1.78, 3.0, 4.3]
+var ribbitLen = 0.3
+
+func _onLaunch():
+	var start = ribbits[randi() % ribbits.size()]
+	launchSfx.play(start)
+	await get_tree().create_timer(ribbitLen).timeout
+	launchSfx.stop()
 
 func _displayBuffWindow(msg):
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE

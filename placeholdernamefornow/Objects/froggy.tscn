@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://0ntrha332nkc" path="res://Art/Frog_Idle_Spritesheet.png" id="3_xs0qt"]
 [ext_resource type="Texture2D" uid="uid://cfdqtn207ylnr" path="res://Art/Open_Mouth.png" id="4_xs0qt"]
 [ext_resource type="Script" uid="uid://4816q0nwtxpv" path="res://Scripts/notification_canvas.gd" id="6_f6s1g"]
+[ext_resource type="AudioStream" uid="uid://cfuedskqlsj87" path="res://Art/Frog Sound Effect.mp3" id="7_frog"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_bq1xi"]
 friction = 0.5
@@ -146,6 +147,9 @@ target_position = Vector2(0, 24)
 
 [node name="froggyYUMMYfeet" type="Node2D" parent="." unique_id=590660914]
 position = Vector2(0, 9)
+
+[node name="launchSfx" type="AudioStreamPlayer" parent="." unique_id=590660915]
+stream = ExtResource("7_frog")
 
 [node name="notificationCanvas" type="CanvasLayer" parent="." unique_id=1551593118]
 visible = false
