@@ -24,6 +24,7 @@ func _ready() -> void:
 	_updateUsedPos()
 
 func _physics_process(delta: float) -> void:
+	var wantVel := Vector2.ZERO
 	if activated:
 		if is_instance_valid(player):
 			targetPos = player.global_position
@@ -33,17 +34,15 @@ func _physics_process(delta: float) -> void:
 				_updateUsedPos()
 				_wanderTimer = randf_range(0.3, 0.8)
 		else:
-			usedTargPos = targetPos 
+			usedTargPos = targetPos
 
 		var toTarget := usedTargPos - global_position
-		var wantVel := Vector2.ZERO
 		if toTarget.length() > 1.0:
 			wantVel = toTarget.normalized() * speed
-		wantVel += _buzz(buzzStrength)
-		wantVel = rayManager._check4collision(wantVel)
-		global_position += wantVel * delta
 
-	global_position += _buzz(buzzStrength) * delta
+	wantVel += _buzz(buzzStrength)
+	wantVel = rayManager._check4collision(wantVel)
+	global_position += wantVel * delta
 
 
 func _buzz(strength : float) -> Vector2:

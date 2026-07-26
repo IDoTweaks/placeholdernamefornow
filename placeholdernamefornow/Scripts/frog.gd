@@ -20,6 +20,7 @@ extends RigidBody2D
 @export var kill_y: float = 700.0
 @export var maxY : float
 @export var mouth_open_distance: float = 150.0
+@export var eat_radius: float = 20.0
 @export var bounce_strength: float = 1400.0
 
 @export var gun_recoil_strength: float = 900.0
@@ -144,8 +145,10 @@ func _unhandled_input(event: InputEvent) -> void:
 	if is_launching:
 		if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 			var sample := _point_and_tangent_at_distance(launch_path, launch_total_length)
+			var prev_position := global_position
 			var motion: Vector2 = sample[0] - global_position
 			_move_collision_safe(motion)
+			_eat_flies_along(prev_position, global_position)
 			_finish_launch(sample[1])
 		return
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
@@ -309,6 +312,9 @@ func _extend_tongue(target: Vector2) -> void:
 func _eat_fly(fly_node: Node) -> void:
 	if fly_node == null or not is_instance_valid(fly_node):
 		return
+	if fly_node.has_meta("eaten"):
+		return
+	fly_node.set_meta("eaten", true)
 	if fly_node.has_method("_get_eaten"):
 		fly_node._get_eaten()
 	_gainXp(xpPerKill)
@@ -321,6 +327,13 @@ func _eat_fly(fly_node: Node) -> void:
 func _eat_fly_contact(fly_node: Node) -> void:
 	if is_grappled:
 		_eat_fly(fly_node)
+
+func _eat_flies_along(from: Vector2, to: Vector2) -> void:
+	for fly in get_tree().get_nodes_in_group("fly"):
+		if fly is Node2D and is_instance_valid(fly):
+			var closest := Geometry2D.get_closest_point_to_segment(fly.global_position, from, to)
+			if fly.global_position.distance_to(closest) <= eat_radius:
+				_eat_fly(fly)
 
 func _release_tongue() -> void:
 	if is_aiming and is_grappled and tongue_points.size() >= 2:
@@ -348,10 +361,13 @@ func _advance_launch(delta: float) -> void:
 	launch_travel_speed = min(launch_travel_speed + path_travel_accel * delta, path_travel_max_speed)
 	launch_progress += launch_travel_speed * delta
 	var sample := _point_and_tangent_at_distance(launch_path, launch_progress)
+	var prev_position := global_position
 	var motion: Vector2 = sample[0] - global_position
 	if not _move_collision_safe(motion):
+		_eat_flies_along(prev_position, global_position)
 		_finish_launch(sample[1])
 		return
+	_eat_flies_along(prev_position, global_position)
 	aim_line.points = _remaining_path_points(launch_path, launch_progress)
 	if launch_progress >= launch_total_length:
 		_finish_launch(sample[1])
