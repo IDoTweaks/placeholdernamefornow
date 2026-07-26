@@ -479,16 +479,16 @@ var level: int = 0
 @export var xp2next : float = 3
 @export var perLevelMult : float = 1.2
 @export var playerGui : CanvasLayer
-var upgradeI = 0
+var choiceButtons = []
 var upgrades = [
-	[1,"launchStrengthAdd",50],
-	[2,"xpMult",1.2],
-	[3,"xpAdd",1],
-	[4,"launchStrengthMult",1.2],
-	[5,"maxToungeLengthAdd",200],
-	[6,"maxToungeLengthMult",1.2],
-	[7,"pathTravelSpeedAdd",200],
-	[8,"pathTravelSpeedMult",1.2],
+	["launchStrengthAdd",50,"launch strength +","you recived a launch strength adder buff! \nnow you can go faster!\nactually maybe its a nerf because slow and steady wins the race!"],
+	["launchStrengthMult",1.2,"launch strength x","you recived a launch strength multiplier buff! \nnow you can go faster!\nactually maybe its a nerf because slow and steady wins the race!"],
+	["xpMult",1.2,"xp multiplier","you recived a xp multiplier buff! \nnow you get more xp so you can get more xp multipliers\nshit i think we are stuck in a paradoxT_T"],
+	["xpAdd",1,"xp per kill +","you recived a xp adder buff! \nnow you get more xp so you can get more xp adders\nshit i think we are stuck in a paradoxT_T"],
+	["maxToungeLengthAdd",200,"tongue length +","you recived a tongue length adder buff! \nnow you can lick further!\nplease dont exploit it to lick things you shouldn't:("],
+	["maxToungeLengthMult",1.2,"tongue length x","you recived a tongue length multiplier buff! \nnow you can lick further!\nplease dont exploit it to lick things you shouldn't:("],
+	["pathTravelSpeedAdd",200,"path speed +","you recived a path travel speed adder buff! \nnow you can go faster!\nactually maybe its a nerf because slow and steady wins the race!"],
+	["pathTravelSpeedMult",1.2,"path speed x","you recived a path travel speed multiplier buff! \nnow you can go faster!\nactually maybe its a nerf because slow and steady wins the race!"],
 	]
 
 func _gainXp(ammount : int):
@@ -532,6 +532,7 @@ func _displayBuffWindow(msg):
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	menuOpen = true
 	buffTxt.text = msg
+	buffTxt.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	notifCanv.visible = true
 	get_tree().paused = true
 
@@ -541,61 +542,59 @@ func _closeBuffWindow():
 	notifCanv.visible = false
 	get_tree().paused = false
 
+func _applyUpgrade(up):
+	if up[0] == "xpMult":
+		_xpMultBuff(up[1])
+	elif up[0] == "xpAdd":
+		_xpAddBuff(up[1])
+	elif up[0] == "launchStrengthAdd":
+		_launchStrengthAddBuff(up[1])
+	elif up[0] == "launchStrengthMult":
+		_launchStrengthMultBuff(up[1])
+	elif up[0] == "maxToungeLengthAdd":
+		_maxToungeLengthAddBuff(up[1])
+	elif up[0] == "maxToungeLengthMult":
+		_maxToungeLengthMultBuff(up[1])
+	elif up[0] == "pathTravelSpeedAdd":
+		_pathTravelSpeedAddBuff(up[1])
+	elif up[0] == "pathTravelSpeedMult":
+		_pathTravelSpeedMultBuff(up[1])
+
+func _onUpgradePicked(up):
+	_applyUpgrade(up)
+	for b in choiceButtons:
+		b.queue_free()
+	choiceButtons.clear()
+	_displayBuffWindow(up[3])
+
+func _offerUpgrades():
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	menuOpen = true
+	buffTxt.text = "PICK A BUFF!"
+	buffTxt.vertical_alignment = VERTICAL_ALIGNMENT_TOP
+	notifCanv.visible = true
+	get_tree().paused = true
+	for b in choiceButtons:
+		b.queue_free()
+	choiceButtons.clear()
+	var pool = upgrades.duplicate()
+	pool.shuffle()
+	var y = 55
+	for up in pool.slice(0,3):
+		var b = Button.new()
+		b.text = up[2]
+		b.position = Vector2(25, y)
+		b.size = Vector2(200, 40)
+		b.pressed.connect(_onUpgradePicked.bind(up))
+		notifCanv.add_child(b)
+		choiceButtons.append(b)
+		y += 50
+
 func _onLevelUp():
 	global_scale.x += growthPerLvl
 	global_scale.y += growthPerLvl
 	print("lvl")
-	if upgradeI < upgrades.size() and level == upgrades[upgradeI][0]:
-		get_tree().paused = true
-		if upgrades[upgradeI][1] == "xpMult":
-			_xpMultBuff(upgrades[upgradeI][2])
-			var msg = "you recived a xp multiplier buff! \n
-			now you get more xp so you can get more xp multipliers\n
-			shit i think we are stuck in a paradoxT_T"
-			_displayBuffWindow(msg)
-		elif upgrades[upgradeI][1] == "xpAdd":
-			_xpAddBuff(upgrades[upgradeI][2])
-			var msg = "you recived a xp adder buff! \n
-			now you get more xp so you can get more xp adders\n
-			shit i think we are stuck in a paradoxT_T"
-			_displayBuffWindow(msg)
-		elif upgrades[upgradeI][1] == "launchStrengthAdd":
-			_launchStrengthAddBuff(upgrades[upgradeI][2])
-			var msg = "you recived a launch strength adder buff! \n
-			now you can go faster!\n
-			actually maybe its a nerf because slow and steady wins the race!"
-			_displayBuffWindow(msg)
-		elif upgrades[upgradeI][1] == "launchStrengthMult":
-			var msg = "you recived a launch strength multiplier buff! \n
-			now you can go faster!\n
-			actually maybe its a nerf because slow and steady wins the race!"
-			_displayBuffWindow(msg)
-			_launchStrengthMultBuff(upgrades[upgradeI][2])
-		elif upgrades[upgradeI][1] == "maxToungeLengthAdd":
-			_maxToungeLengthAddBuff(upgrades[upgradeI][2])
-			var msg = "you recived a tongue length adder buff! \n
-			now you can lick further!\n
-			please dont exploit it to lick things you shouldn't:("
-			_displayBuffWindow(msg)
-		elif upgrades[upgradeI][1] == "maxToungeLengthMult":
-			_maxToungeLengthMultBuff(upgrades[upgradeI][2])
-			var msg = "you recived a tongue length multiplier buff! \n
-			now you can lick further!\n
-			please dont exploit it to lick things you shouldn't:("
-			_displayBuffWindow(msg)
-		elif upgrades[upgradeI][1] == "pathTravelSpeedAdd":
-			var msg = "you recived a path travel speed adder buff! \n
-			now you can go faster!\n
-			actually maybe its a nerf because slow and steady wins the race!"
-			_displayBuffWindow(msg)
-			_pathTravelSpeedAddBuff(upgrades[upgradeI][2])
-		elif upgrades[upgradeI][1] == "pathTravelSpeedMult":
-			var msg = "you recived a path travel speed multiplier buff! \n
-			now you can go faster!\n
-			actually maybe its a nerf because slow and steady wins the race!"
-			_displayBuffWindow(msg)
-			_pathTravelSpeedMultBuff(upgrades[upgradeI][2])
-		upgradeI+=1
+	_offerUpgrades()
 
 func _xpTick():
 	if xp >= xp2next:

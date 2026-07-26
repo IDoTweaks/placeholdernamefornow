@@ -49,7 +49,13 @@ func _physics_process(delta: float) -> void:
 func _buzz(strength : float) -> Vector2:
 	return Vector2(randf_range(-strength, strength), randf_range(-strength, strength))
 
+@onready var eplodeParticles = preload("res://particles/flyDieParticles.tscn")
+
 func _get_eaten():
+	var tempParticles = eplodeParticles.instantiate()
+	tempParticles.global_position = global_position
+	get_tree().current_scene.add_child(tempParticles)
+	tempParticles.emitting = true
 	queue_free()
 	player._gainXp(1)
 
