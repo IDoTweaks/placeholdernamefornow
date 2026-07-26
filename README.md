@@ -1,3 +1,4 @@
+<img width="1142" height="650" alt="Screenshot from 2026-07-26 11-59-14" src="https://github.com/user-attachments/assets/1794d5fa-5af2-43a1-ac64-b0ff3734051b" />
 # place holder readme for now:D
 
 # WHAT IS THE GAME
