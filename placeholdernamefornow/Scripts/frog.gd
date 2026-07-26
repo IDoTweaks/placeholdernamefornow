@@ -22,6 +22,12 @@ extends RigidBody2D
 @export var mouth_open_distance: float = 150.0
 @export var bounce_strength: float = 1400.0
 
+@export var gun_recoil_strength: float = 900.0
+@export var bullet_speed: float = 1400.0
+@export var fire_cooldown: float = 0.22
+@export var gun_sight_length: float = 90.0
+var bullet_scene: PackedScene = preload("res://Objects/bug_bullet.tscn")
+
 var menuOpen = false
 var grounded = false
 @onready var frogFeet = $froggyYUMMYfeet
@@ -36,6 +42,10 @@ var is_launching := false
 var pre_launch_speed := 0.0
 var spawn_position: Vector2
 var spawn_rotation: float
+
+var has_gun := false
+var gun_aim_screen: Vector2 = Vector2.ZERO
+var _fire_timer := 0.0
 
 var tongue_points: PackedVector2Array = []
 var launch_path: PackedVector2Array = []
@@ -85,7 +95,11 @@ func _physics_process(delta: float) -> void:
 	if not lock_rotation and absf(angular_velocity) > max_angular_speed:
 		angular_velocity = signf(angular_velocity) * max_angular_speed
 
-	if is_aiming and not tongue_points.is_empty():
+	if has_gun:
+		if _fire_timer > 0.0:
+			_fire_timer -= delta
+		_update_gun_sight()
+	elif is_aiming and not tongue_points.is_empty():
 		_update_tongue_base()
 
 	_update_mouth_state()
@@ -119,6 +133,14 @@ func _check_landing_tile(collider: Object) -> void:
 		grounded = false
 
 func _unhandled_input(event: InputEvent) -> void:
+	if has_gun:
+		if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+			_fire_gun()
+		elif event is InputEventMouseMotion:
+			gun_aim_screen += event.relative
+			var vp_size := get_viewport().get_visible_rect().size
+			gun_aim_screen = gun_aim_screen.clamp(Vector2.ZERO, vp_size)
+		return
 	if is_launching:
 		if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 			var sample := _point_and_tangent_at_distance(launch_path, launch_total_length)
@@ -132,6 +154,8 @@ func _unhandled_input(event: InputEvent) -> void:
 		else:
 			_release_tongue()
 	elif event is InputEventMouseMotion and is_aiming:
+		if Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
+			return
 		aim_screen_offset += event.relative
 		_extend_tongue(_aim_relative_target(aim_screen_offset))
 
@@ -168,6 +192,58 @@ func _start_aim() -> void:
 	aim_line.points = tongue_points
 	_extend_tongue(_aim_relative_target(aim_screen_offset))
 
+func _pickup_gun() -> void:
+	if has_gun:
+		return
+	has_gun = true
+	is_aiming = false
+	is_grappled = false
+	is_launching = false
+	freeze = false
+	lock_rotation = true
+	pre_launch_speed = 0.0
+	tongue_points.clear()
+	aim_line.clear_points()
+	gun_aim_screen = get_viewport().get_visible_rect().size / 2.0
+
+func _gun_aim_world_target() -> Vector2:
+	return get_viewport().canvas_transform.affine_inverse() * gun_aim_screen
+
+func _update_gun_sight() -> void:
+	var offset := _gun_aim_world_target() - global_position
+	if offset.length() < 1.0:
+		return
+	aim_line.points = PackedVector2Array([global_position, global_position + offset.normalized() * gun_sight_length])
+
+func _fire_gun() -> void:
+	if _fire_timer > 0.0:
+		return
+	var aim_dir := _gun_aim_world_target() - global_position
+	if aim_dir.length() < 1.0:
+		return
+	aim_dir = aim_dir.normalized()
+	_fire_timer = fire_cooldown
+
+	var bullet := bullet_scene.instantiate()
+	get_tree().current_scene.add_child(bullet)
+	bullet.shooter = self
+	bullet.global_position = global_position + aim_dir * (_collision_clearance() + 6.0)
+	bullet.launch(aim_dir, bullet_speed)
+
+	apply_central_impulse(-aim_dir * gun_recoil_strength)
+
+	if sprite_tween:
+		sprite_tween.kill()
+	sprite.scale = sprite_base_scale * Vector2(1.2, 0.85)
+	sprite_tween = create_tween()
+	sprite_tween.tween_property(sprite, "scale", sprite_base_scale, 0.12).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+
+	if cam_tween:
+		cam_tween.kill()
+	cam.zoom = cam_base_zoom * 1.04
+	cam_tween = create_tween()
+	cam_tween.tween_property(cam, "zoom", cam_base_zoom, 0.15).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+
 func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
 	if not is_grappled or is_launching or tongue_points.is_empty():
 		return
@@ -186,7 +262,7 @@ func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
 		state.linear_velocity -= dir * radial_speed
 
 func _update_tongue_base() -> void:
-	if not is_grappled and tongue_points.size() >= 2 and tongue_points[1].distance_to(global_position) >= min_point_distance:
+	if not Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT) and not is_grappled and tongue_points.size() >= 2 and tongue_points[1].distance_to(global_position) >= min_point_distance:
 		tongue_points.insert(0, global_position)
 	else:
 		tongue_points[0] = global_position
@@ -286,9 +362,20 @@ func _move_collision_safe(motion: Vector2) -> bool:
 	var steps: int = max(1, ceili(total_length / collision_step_length))
 	var step_motion := motion / steps
 	for i in range(steps):
-		if move_and_collide(step_motion):
+		var collision := move_and_collide(step_motion)
+		if collision:
+			var normal := collision.get_normal()
+			if absf(step_motion.normalized().dot(normal)) < 0.3:
+				move_and_collide(collision.get_remainder().slide(normal))
+				continue
 			return false
 	return true
+
+func _collision_clearance() -> float:
+	var shape := collision_shape.shape
+	if shape is CircleShape2D:
+		return shape.radius
+	return min_point_distance
 
 func _respawn() -> void:
 	is_aiming = false
@@ -442,14 +529,14 @@ func _catchFly(fly):
 @onready var buffTxt = $notificationCanvas/Window/buffTxt
 
 func _displayBuffWindow(msg):
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	menuOpen = true
 	buffTxt.text = msg
 	notifCanv.visible = true
 	get_tree().paused = true
 
 func _closeBuffWindow():
-	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	menuOpen = false
 	notifCanv.visible = false
 	get_tree().paused = false

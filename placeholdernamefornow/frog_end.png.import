@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bcfyfgkq55www"
-path="res://.godot/imported/resume_button.png-5bcf694d3f821eb6d4071748d6966336.ctex"
+uid="uid://banb4imgmap65"
+path="res://.godot/imported/frog_end.png-050665564f65734f90c82ecfcab50b45.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/resume_button.png"
-dest_files=["res://.godot/imported/resume_button.png-5bcf694d3f821eb6d4071748d6966336.ctex"]
+source_file="res://frog_end.png"
+dest_files=["res://.godot/imported/frog_end.png-050665564f65734f90c82ecfcab50b45.ctex"]
 
 [params]
 
