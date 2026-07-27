@@ -1,6 +1,9 @@
 <img width="1142" height="650" alt="Screenshot from 2026-07-26 11-59-14" src="https://github.com/user-attachments/assets/1794d5fa-5af2-43a1-ac64-b0ff3734051b" />
 # place holder readme for now:D
 
+# HOW TO CONTRIBUTE
+so the project is pretty much over since it was made for the horizons hackathon but the code is pretty well structured so you can just clone it and do whatever:)
+
 # WHAT IS THE GAME
 the game is the cutest frog ever that moves using its tongue which you draw!
 you can also catch bugs and get upgrades!
