@@ -42,7 +42,7 @@ theme_override_colors/default_color = Color(1.1406988e-05, 0.89768624, 7.70092e-
 theme_override_colors/font_outline_color = Color(0, 0.14509805, 0, 1)
 theme_override_constants/outline_size = 45
 theme_override_font_sizes/normal_font_size = 55
-text = "PLACEHOLDER NAME FOR NOW"
+text = "frogieGrokie"
 horizontal_alignment = 1
 vertical_alignment = 1
 

@@ -9,7 +9,7 @@ you can also catch bugs and get upgrades!
 - one of the best levels ever madde according to 3 top level coding indevideuals that are experts in level design
 - a frog(important)
 - you can draw the tongue(also important)
-- the best physics ever that were made for a game which name is placeholdernamefornow between the dates july 24-26 2026
+- the best physics ever that were made for a game which name is frogieGrokie between the dates july 24-26 2026
 - the most advanced AI navigation system ever made for a fly in the limit of 77 lines including comments(so good)
 - the best main menu ever. (this one is not debateable)
 - frog does ribbit!
