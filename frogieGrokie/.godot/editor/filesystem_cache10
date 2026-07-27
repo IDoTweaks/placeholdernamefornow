@@ -11,7 +11,7 @@ godot_super-wakatime.gd::GDScript::6277149880384411866::1785157082::0::1::::<>Ed
 plugin.cfg::TextFile::-1::1785157082::0::1::::<><><>0<>0<><>::
 README.md::TextFile::-1::1785157082::0::1::::<><><>0<>0<><>::
 utils.gd::GDScript::5251015809120159908::1785157082::0::1::::<>RefCounted<><>0<>0<><>::
-::res://Art/::1785157082
+::res://Art/::1785159372
 Background.png::CompressedTexture2D::4532952323666366946::1785157082::1785157082::1::::<><><>0<>0<>8e83660f1fac24a2a3603dac6b99eb8c<>res://.godot/imported/Background.png-67b7271583f8520b2b7f2fb593185f3e.ctex::
 bee_anim.png::CompressedTexture2D::7639924740664120778::1785157082::1785157082::1::::<><><>0<>0<>241b942bf5a53d8c3d7a3c8093ad8be5<>res://.godot/imported/bee_anim.png-d3136b61e1dae3f1d28e3be1ceeaca2e.ctex::
 bouncy.png::CompressedTexture2D::5965036816142449836::1785157082::1785157082::1::::<><><>0<>0<>02afe2fccf65885c17a74eb1059cc6c2<>res://.godot/imported/bouncy.png-4dca835c9c0a543f8eb77f1dd30069b1.ctex::
@@ -33,37 +33,42 @@ SpringAnim1.png::CompressedTexture2D::7851566438252264431::1785157082::178515708
 SpringAnim2.png::CompressedTexture2D::3703649418976685025::1785157082::1785157082::1::::<><><>0<>0<>16f9d2ee6a66129a5b8caccfed40db69<>res://.godot/imported/SpringAnim2.png-ddc184795a164d11d52e7eec3ebdd357.ctex::
 water_block.png::CompressedTexture2D::8094376725577569984::1785157082::1785157082::1::::<><><>0<>0<>0e46ef12480c59a4c6810ee523051dea<>res://.godot/imported/water_block.png-4764166439d019c17067dcd7b9bc4260.ctex::
 water_bottom.png::CompressedTexture2D::2193294547486203787::1785157082::1785157082::1::::<><><>0<>0<>8f1d1eacfb50b7353007098bba3f478c<>res://.godot/imported/water_bottom.png-3889a39195d254724ad6c11aeda0d17a.ctex::
-WhatsApp Image 2026-07-25 at 17.30.28.jpeg::CompressedTexture2D::4171041449213649436::1785157082::1785157082::1::::<><><>0<>0<>8b429c8921d2435cec41c4758a567be9<>res://.godot/imported/WhatsApp Image 2026-07-25 at 17.30.28.jpeg-3e6557d80556e0fae8531bf605c27aad.ctex::
-::res://Objects/::1785157082
+WhatsApp Image 2026-07-25 at 17.30.28.jpeg::CompressedTexture2D::4171041449213649436::1785159372::1785159372::1::::<><><>0<>0<>8b429c8921d2435cec41c4758a567be9<>res://.godot/imported/WhatsApp Image 2026-07-25 at 17.30.28.jpeg-3e6557d80556e0fae8531bf605c27aad.ctex::
+::res://Objects/::1785159693
 bee.tscn::PackedScene::1632968673337201787::1785157082::0::1::::<><><>0<>0<><>::uid://htppsm3ldnd5::::res://Scripts/bee.gd<>uid://dtt0sydpo0mg3::::res://Scripts/ray_cast_manager.gd<>uid://dg33pdtwl8ed3::::res://Art/bee_anim.png
-bug_bullet.tscn::PackedScene::-1::1785157082::0::1::::<><><>0<>0<><>::res://Scripts/bug_bullet.gd
-checkpoint.tscn::PackedScene::-1::1785157082::0::1::::<><><>0<>0<><>::res://Scripts/checkpoint.gd
+bug_bullet.tscn::PackedScene::-1::1785159372::0::1::::<><><>0<>0<><>::res://Scripts/bug_bullet.gd
+checkpoint.tscn::PackedScene::-1::1785159372::0::1::::<><><>0<>0<><>::res://Scripts/checkpoint.gd
 fly.tscn::PackedScene::556894093058749930::1785157082::0::1::::<><><>0<>0<><>::uid://dohfmab8ocwqk::::res://Scripts/fly.gd<>uid://dtt0sydpo0mg3::::res://Scripts/ray_cast_manager.gd<>uid://c7qjjetwk521::::res://Art/fly_anim.png
-fly_spawner.tscn::PackedScene::4187548960438864449::1785157082::0::1::::<><><>0<>0<><>::uid://7gmqtp1oahgl::::res://Scripts/fly_spawner.gd<>uid://h6071114lwx3::::res://Objects/fly.tscn
-froggy.tscn::PackedScene::588014909344835468::1785157082::0::1::::<><><>0<>0<><>::uid://cgmynr8i7envo::::res://Scripts/frog.gd<>uid://ux8fnu4ys6vj::::res://Objects/playerGui.tscn<>uid://0ntrha332nkc::::res://Art/Frog_Idle_Spritesheet.png<>uid://cfdqtn207ylnr::::res://Art/Open_Mouth.png<>uid://4816q0nwtxpv::::res://Scripts/notification_canvas.gd<>uid://cfuedskqlsj87::::res://Art/Frog Sound Effect.mp3
-gun_pickup.tscn::PackedScene::-1::1785157082::0::1::::<><><>0<>0<><>::res://Scripts/gun_pickup.gd
-playerGui.tscn::PackedScene::1453270865884923903::1785157082::0::1::::<><><>0<>0<><>::uid://dwpytu8yco3we::::res://Scripts/player_gui.gd
+fly_spawner.tscn::PackedScene::4187548960438864449::1785159372::0::1::::<><><>0<>0<><>::uid://7gmqtp1oahgl::::res://Scripts/fly_spawner.gd<>uid://h6071114lwx3::::res://Objects/fly.tscn
+froggy.tscn::PackedScene::588014909344835468::1785159372::0::1::::<><><>0<>0<><>::uid://cgmynr8i7envo::::res://Scripts/frog.gd<>uid://ux8fnu4ys6vj::::res://Objects/playerGui.tscn<>uid://0ntrha332nkc::::res://Art/Frog_Idle_Spritesheet.png<>uid://cfdqtn207ylnr::::res://Art/Open_Mouth.png<>uid://4816q0nwtxpv::::res://Scripts/notification_canvas.gd<>uid://cfuedskqlsj87::::res://Art/Frog Sound Effect.mp3
+goal.tscn::PackedScene::-1::1785159668::0::1::::<><><>0<>0<><>::res://Scripts/goal.gd<>uid://0ntrha332nkc::::res://Art/Frog_Idle_Spritesheet.png<>uid://dijdxlnlcswqa::::res://Art/heart_anim.png<>res://Scripts/goal_arrow.gd
+gun_pickup.tscn::PackedScene::-1::1785159372::0::1::::<><><>0<>0<><>::res://Scripts/gun_pickup.gd
+playerGui.tscn::PackedScene::1453270865884923903::1785159372::0::1::::<><><>0<>0<><>::uid://dwpytu8yco3we::::res://Scripts/player_gui.gd
+winScreen.tscn::PackedScene::-1::1785159693::0::1::::<><><>0<>0<><>::res://Scripts/win_screen.gd<>uid://banb4imgmap65::::res://frog_end.png
 ::res://particles/::1785157082
 drawParticles.tscn::PackedScene::6155552960386808734::1785157082::0::1::::<><><>0<>0<><>::uid://cl68peypnfp4q::::res://Scripts/land_particles.gd
 drawPointerParticles.tscn::PackedScene::4250592116161286739::1785157082::0::1::::<><><>0<>0<><>::uid://cl68peypnfp4q::::res://Scripts/land_particles.gd
 flyDieParticles.tscn::PackedScene::6237628702186994451::1785157082::0::1::::<><><>0<>0<><>::uid://cl68peypnfp4q::::res://Scripts/land_particles.gd
 landParticles.tscn::PackedScene::1075972428265305050::1785157082::0::1::::<><><>0<>0<><>::uid://cl68peypnfp4q::::res://Scripts/land_particles.gd
-::res://Scenes/::1785157082
-Game2.tscn::PackedScene::1746493918800298425::1785157082::0::1::::<><><>0<>0<><>::uid://b0wqk4omypuo4::::res://Objects/fly_spawner.tscn<>uid://im3rwyg2h68g::::res://Objects/froggy.tscn
-Game.tscn::PackedScene::2815913371878177005::1785157082::0::1::::<><><>0<>0<><>::uid://b5t2ceiosrahm::::res://Art/Background.png<>uid://im3rwyg2h68g::::res://Objects/froggy.tscn<>uid://h6071114lwx3::::res://Objects/fly.tscn<>uid://c45arut0eqsmf::::res://Art/dirt.png<>uid://dafy3xd6wpclt::::res://Art/brick.png<>uid://6ipigkstpt36::::res://Art/water_bottom.png<>uid://cethgvbiv0pnx::::res://Art/grass.png<>uid://xja0xk872fk2::::res://Objects/bee.tscn<>uid://fu7w6ipk1jss::::res://Art/spike.png<>uid://dnk8g4ubo38cy::::res://Art/water_block.png<>uid://bafusjbxvo8b3::::res://Art/lilypad.png<>uid://cq8rjxkdpdoee::::res://Art/bouncy.png<>uid://bu7r6ngphmamc::::res://Art/flower.png<>res://Objects/checkpoint.tscn<>uid://cfdqtn207ylnr::::res://Art/Open_Mouth.png<>uid://dijdxlnlcswqa::::res://Art/heart_anim.png
+::res://Scenes/::1785159717
+Game2.tscn::PackedScene::1746493918800298425::1785159372::0::1::::<><><>0<>0<><>::uid://b0wqk4omypuo4::::res://Objects/fly_spawner.tscn<>uid://im3rwyg2h68g::::res://Objects/froggy.tscn
+Game.tscn::PackedScene::2815913371878177005::1785159717::0::1::::<><><>0<>0<><>::uid://b5t2ceiosrahm::::res://Art/Background.png<>uid://im3rwyg2h68g::::res://Objects/froggy.tscn<>uid://h6071114lwx3::::res://Objects/fly.tscn<>uid://c45arut0eqsmf::::res://Art/dirt.png<>uid://dafy3xd6wpclt::::res://Art/brick.png<>uid://6ipigkstpt36::::res://Art/water_bottom.png<>uid://cethgvbiv0pnx::::res://Art/grass.png<>uid://xja0xk872fk2::::res://Objects/bee.tscn<>uid://fu7w6ipk1jss::::res://Art/spike.png<>uid://dnk8g4ubo38cy::::res://Art/water_block.png<>uid://bafusjbxvo8b3::::res://Art/lilypad.png<>uid://cq8rjxkdpdoee::::res://Art/bouncy.png<>uid://bu7r6ngphmamc::::res://Art/flower.png<>res://Objects/checkpoint.tscn<>res://Objects/goal.tscn
 MainMenu.tscn::PackedScene::4352409443722818310::1785157082::0::1::::<><><>0<>0<><>::uid://cp7kts0l06qtm::::res://Scripts/main_menu.gd<>uid://b5t2ceiosrahm::::res://Art/Background.png<>uid://b0oqpcomawlng::::res://Art/WhatsApp Image 2026-07-25 at 17.30.28.jpeg<>uid://dd3b6rcfrykfo::::res://Art/play_button.png
-test2d.tscn::PackedScene::9145899415886590099::1785157082::0::1::::<><><>0<>0<><>::uid://h6071114lwx3::::res://Objects/fly.tscn
-::res://Scripts/::1785157082
+test2d.tscn::PackedScene::9145899415886590099::1785159435::0::1::::<><><>0<>0<><>::uid://h6071114lwx3::::res://Objects/fly.tscn
+::res://Scripts/::1785159669
 bee.gd::GDScript::531483589838413056::1785157082::0::1::::<>Node2D<><>0<>0<><>::
-bug_bullet.gd::GDScript::5580322027394851804::1785157082::0::1::::<>Area2D<><>0<>0<><>::
-checkpoint.gd::GDScript::2419513577251760337::1785157082::0::1::::<>Node2D<><>0<>0<><>::
-fly.gd::GDScript::8156681523843852754::1785157082::0::1::::<>Node2D<><>0<>0<><>::
-fly_spawner.gd::GDScript::2259187461872827859::1785157082::0::1::::<>Node2D<><>0<>0<><>::
-frog.gd::GDScript::5220228329692189804::1785157082::0::1::::<>RigidBody2D<><>0<>0<><>::
+bug_bullet.gd::GDScript::5580322027394851804::1785159372::0::1::::<>Area2D<><>0<>0<><>::
+checkpoint.gd::GDScript::2419513577251760337::1785159372::0::1::::<>Node2D<><>0<>0<><>::
+fly.gd::GDScript::8156681523843852754::1785159372::0::1::::<>Node2D<><>0<>0<><>::
+fly_spawner.gd::GDScript::2259187461872827859::1785159372::0::1::::<>Node2D<><>0<>0<><>::
+frog.gd::GDScript::5220228329692189804::1785159372::0::1::::<>RigidBody2D<><>0<>0<><>::
 fullscreen_toggle.gd::GDScript::1340763361492764209::1785157082::0::1::::<>Node<><>0<>0<><>::
-gun_pickup.gd::GDScript::5483421047376920666::1785157082::0::1::::<>Node2D<><>0<>0<><>::
+goal.gd::GDScript::104612545202775803::1785159619::0::1::::<>Node2D<><>0<>0<><>::
+goal_arrow.gd::GDScript::4661093829839339933::1785159632::0::1::::<>Control<><>0<>0<><>::
+gun_pickup.gd::GDScript::5483421047376920666::1785159372::0::1::::<>Node2D<><>0<>0<><>::
 land_particles.gd::GDScript::5610945053318103294::1785157082::0::1::::<>GPUParticles2D<><>0<>0<><>::
 main_menu.gd::GDScript::5892376194673307002::1785157082::0::1::::<>Control<><>0<>0<><>::
-notification_canvas.gd::GDScript::2105235812424438087::1785157082::0::1::::<>Window<><>0<>0<><>::
-player_gui.gd::GDScript::8735874517876755248::1785157082::0::1::::<>CanvasLayer<><>0<>0<><>::
+notification_canvas.gd::GDScript::2105235812424438087::1785159372::0::1::::<>Window<><>0<>0<><>::
+player_gui.gd::GDScript::8735874517876755248::1785159372::0::1::::<>CanvasLayer<><>0<>0<><>::
 ray_cast_manager.gd::GDScript::8533624592534557408::1785157082::0::1::::<>Node2D<><>0<>0<><>::
+win_screen.gd::GDScript::4885161440408190251::1785159640::0::1::::<>CanvasLayer<><>0<>0<><>::

@@ -1,0 +1,71 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://Scripts/win_screen.gd" id="1_win"]
+[ext_resource type="Texture2D" uid="uid://banb4imgmap65" path="res://frog_end.png" id="2_end"]
+
+[node name="winScreen" type="CanvasLayer"]
+process_mode = 3
+layer = 100
+script = ExtResource("1_win")
+
+[node name="Dim" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.04, 0.07, 0.05, 0.78)
+
+[node name="Center" type="CenterContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBox" type="VBoxContainer" parent="Center"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Title" type="Label" parent="Center/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.44313726, 1, 0.35686275, 1)
+theme_override_font_sizes/font_size = 44
+text = "YOU MADE IT!"
+horizontal_alignment = 1
+
+[node name="Pic" type="TextureRect" parent="Center/VBox"]
+texture_filter = 1
+custom_minimum_size = Vector2(486, 192)
+layout_mode = 2
+texture = ExtResource("2_end")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Sub" type="Label" parent="Center/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85, 0.95, 0.85, 1)
+theme_override_font_sizes/font_size = 18
+text = "you licked your way across the whole pond
+and found your friend"
+horizontal_alignment = 1
+
+[node name="HBox" type="HBoxContainer" parent="Center/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 24
+alignment = 1
+
+[node name="Again" type="Button" parent="Center/VBox/HBox"]
+custom_minimum_size = Vector2(170, 46)
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "PLAY AGAIN"
+
+[node name="Menu" type="Button" parent="Center/VBox/HBox"]
+custom_minimum_size = Vector2(170, 46)
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "MENU"
+
+[connection signal="pressed" from="Center/VBox/HBox/Again" to="." method="_on_again_pressed"]
+[connection signal="pressed" from="Center/VBox/HBox/Menu" to="." method="_on_menu_pressed"]

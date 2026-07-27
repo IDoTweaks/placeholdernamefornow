@@ -14,8 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://cq8rjxkdpdoee" path="res://Art/bouncy.png" id="9_bouncy"]
 [ext_resource type="Texture2D" uid="uid://bu7r6ngphmamc" path="res://Art/flower.png" id="11_4q8tf"]
 [ext_resource type="PackedScene" path="res://Objects/checkpoint.tscn" id="11_chkpt"]
-[ext_resource type="Texture2D" uid="uid://cfdqtn207ylnr" path="res://Art/Open_Mouth.png" id="13_alh3a"]
-[ext_resource type="Texture2D" uid="uid://dijdxlnlcswqa" path="res://Art/heart_anim.png" id="14_4q8tf"]
+[ext_resource type="PackedScene" path="res://Objects/goal.tscn" id="15_goal"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_b2bpf"]
 texture = ExtResource("4_kldst")
@@ -98,7 +97,6 @@ tile_map_data = PackedByteArray("AADk//P/AQAAAAAAAADk//T/AQAAAAAAAADk//X/AQAAAAA
 tile_set = SubResource("TileSet_7lihs")
 
 [node name="Froggy" parent="." unique_id=79017155 instance=ExtResource("2_gl6un")]
-position = Vector2(65, -1294)
 constant_force = Vector2(0, -23.485)
 maxY = -500.0
 
@@ -157,12 +155,5 @@ wanderRadius = 35.0
 [node name="Checkpoint" parent="." unique_id=1336245807 instance=ExtResource("11_chkpt")]
 position = Vector2(1088, -801)
 
-[node name="OpenMouth" type="Sprite2D" parent="." unique_id=1886556732]
-position = Vector2(3179, -1261)
-texture = ExtResource("13_alh3a")
-hframes = 4
-
-[node name="HeartAnim" type="Sprite2D" parent="." unique_id=1305483247]
-position = Vector2(3155, -1280)
-texture = ExtResource("14_4q8tf")
-hframes = 2
+[node name="Goal" parent="." unique_id=1305483247 instance=ExtResource("15_goal")]
+position = Vector2(3182, -1249)
