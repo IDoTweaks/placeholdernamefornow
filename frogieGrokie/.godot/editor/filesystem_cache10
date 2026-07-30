@@ -1,5 +1,6 @@
 63f7b34db8d8cdea90c76aacccf841ec
-::res://::1785157233
+::res://::1785434879
+export_presets.cfg::TextFile::-1::1785160397::0::1::::<><><>0<>0<><>::
 frog_end.png::CompressedTexture2D::2413370538525007736::1785157082::1785157082::1::::<><><>0<>0<>bf370f222a3e09933cbebc29af4443be<>res://.godot/imported/frog_end.png-050665564f65734f90c82ecfcab50b45.ctex::
 icon.svg::CompressedTexture2D::2641338567033648000::1785157082::1785157082::1::::<><><>0<>0<>ff6279d773a4b2c9af26325f18fbb8a7<>res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex::
 ::res://addons/::1785157082
@@ -50,9 +51,9 @@ drawParticles.tscn::PackedScene::6155552960386808734::1785157082::0::1::::<><><>
 drawPointerParticles.tscn::PackedScene::4250592116161286739::1785157082::0::1::::<><><>0<>0<><>::uid://cl68peypnfp4q::::res://Scripts/land_particles.gd
 flyDieParticles.tscn::PackedScene::6237628702186994451::1785157082::0::1::::<><><>0<>0<><>::uid://cl68peypnfp4q::::res://Scripts/land_particles.gd
 landParticles.tscn::PackedScene::1075972428265305050::1785157082::0::1::::<><><>0<>0<><>::uid://cl68peypnfp4q::::res://Scripts/land_particles.gd
-::res://Scenes/::1785159717
+::res://Scenes/::1785160063
 Game2.tscn::PackedScene::1746493918800298425::1785159372::0::1::::<><><>0<>0<><>::uid://b0wqk4omypuo4::::res://Objects/fly_spawner.tscn<>uid://im3rwyg2h68g::::res://Objects/froggy.tscn
-Game.tscn::PackedScene::2815913371878177005::1785159717::0::1::::<><><>0<>0<><>::uid://b5t2ceiosrahm::::res://Art/Background.png<>uid://im3rwyg2h68g::::res://Objects/froggy.tscn<>uid://h6071114lwx3::::res://Objects/fly.tscn<>uid://c45arut0eqsmf::::res://Art/dirt.png<>uid://dafy3xd6wpclt::::res://Art/brick.png<>uid://6ipigkstpt36::::res://Art/water_bottom.png<>uid://cethgvbiv0pnx::::res://Art/grass.png<>uid://xja0xk872fk2::::res://Objects/bee.tscn<>uid://fu7w6ipk1jss::::res://Art/spike.png<>uid://dnk8g4ubo38cy::::res://Art/water_block.png<>uid://bafusjbxvo8b3::::res://Art/lilypad.png<>uid://cq8rjxkdpdoee::::res://Art/bouncy.png<>uid://bu7r6ngphmamc::::res://Art/flower.png<>res://Objects/checkpoint.tscn<>res://Objects/goal.tscn
+Game.tscn::PackedScene::2815913371878177005::1785160063::0::1::::<><><>0<>0<><>::uid://b5t2ceiosrahm::::res://Art/Background.png<>uid://im3rwyg2h68g::::res://Objects/froggy.tscn<>uid://h6071114lwx3::::res://Objects/fly.tscn<>uid://c45arut0eqsmf::::res://Art/dirt.png<>uid://dafy3xd6wpclt::::res://Art/brick.png<>uid://6ipigkstpt36::::res://Art/water_bottom.png<>uid://cethgvbiv0pnx::::res://Art/grass.png<>uid://xja0xk872fk2::::res://Objects/bee.tscn<>uid://fu7w6ipk1jss::::res://Art/spike.png<>uid://dnk8g4ubo38cy::::res://Art/water_block.png<>uid://bafusjbxvo8b3::::res://Art/lilypad.png<>uid://cq8rjxkdpdoee::::res://Art/bouncy.png<>uid://bu7r6ngphmamc::::res://Art/flower.png<>res://Objects/checkpoint.tscn<>res://Objects/goal.tscn
 MainMenu.tscn::PackedScene::4352409443722818310::1785157082::0::1::::<><><>0<>0<><>::uid://cp7kts0l06qtm::::res://Scripts/main_menu.gd<>uid://b5t2ceiosrahm::::res://Art/Background.png<>uid://b0oqpcomawlng::::res://Art/WhatsApp Image 2026-07-25 at 17.30.28.jpeg<>uid://dd3b6rcfrykfo::::res://Art/play_button.png
 test2d.tscn::PackedScene::9145899415886590099::1785159435::0::1::::<><><>0<>0<><>::uid://h6071114lwx3::::res://Objects/fly.tscn
 ::res://Scripts/::1785159669
